@@ -17,4 +17,219 @@
         .btn-doctor{background:#fff;color:#2d6a4f}
         .btn-patient{background:transparent;color:#fff;border:2px solid #fff}
         .card{background:#fff;border-radius:15px;padding:20px;margin-bottom:15px;box-shadow:0 4px 6px rgba(0,0,0,0.1)}
-        .card h2{font-size
+        .card h2{font-size:1.3rem;margin-bottom:15px;display:flex;align-items:center;gap:8px}
+        .card-patient{border-left:5px solid #40916c}
+        .card-patient h2{color:#40916c}
+        .card-prakriti{border-left:5px solid #4361ee}
+        .card-prakriti h2{color:#4361ee}
+        .card-scanner{border-left:5px dashed #f77f00;background:#fff9f0}
+        .card-scanner h2{color:#f77f00}
+        .card-voice{border-left:5px solid #7209b7}
+        .card-voice h2{color:#7209b7}
+        .card-prescription{border-left:5px solid #2d6a4f}
+        .card-prescription h2{color:#2d6a4f}
+        .form-group{margin-bottom:15px}
+        .form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:15px}
+        label{display:block;margin-bottom:5px;font-weight:600}
+        input[type="text"],input[type="number"],select,textarea{width:100%;padding:10px;border:2px solid #e0e0e0;border-radius:8px;font-size:0.9rem;font-family:inherit}
+        input:focus,select:focus,textarea:focus{outline:none;border-color:#52b788}
+        textarea{min-height:100px;resize:vertical}
+        .btn-verify{background:#40916c;color:#fff;padding:8px 20px;margin-top:8px}
+        .btn-scan{background:#f77f00;color:#fff;padding:8px 20px}
+        .btn-voice{background:#7209b7;color:#fff;padding:8px 20px}
+        .btn-submit{background:#2d6a4f;color:#fff;padding:12px 30px;font-size:1rem;width:100%}
+        .verified-badge{display:none;align-items:center;gap:5px;color:#27ae60;font-weight:600;margin-top:8px;padding:8px;background:#e8f8f0;border-radius:5px}
+        .verified-badge.show{display:flex}
+        .quiz-question{margin-bottom:15px;padding:10px;background:#f8f9fa;border-radius:8px}
+        .quiz-options{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+        .quiz-option{display:flex;align-items:center;gap:8px;padding:8px;background:#fff;border-radius:5px;cursor:pointer}
+        .quiz-option:hover{background:#d8f3dc}
+        input[type="radio"]{width:18px;height:18px;cursor:pointer}
+        .result-box{margin-top:15px;padding:15px;background:linear-gradient(135deg,#4361ee,#3a56d4);color:#fff;border-radius:8px;text-align:center;font-size:1.1rem;font-weight:600;display:none}
+        .result-box.show{display:block}
+        .scan-output{margin-top:10px;padding:10px;background:#f8f9fa;border-radius:5px;border:2px solid #f77f00;min-height:60px;white-space:pre-wrap;font-family:monospace;font-size:0.85rem}
+        .scan-status{margin-top:8px;padding:8px;border-radius:5px;font-weight:600;display:none}
+        .scan-status.processing{display:block;background:#fff3cd;color:#856404}
+        .scan-status.success{display:block;background:#d4edda;color:#155724}
+        .voice-status{margin-top:8px;padding:8px;border-radius:5px;font-weight:600;display:none}
+        .voice-status.listening{display:block;background:#d1ecf1;color:#0c5460;animation:pulse 1.5s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+        .footer{text-align:center;padding:20px;background:#2d6a4f;color:#fff;margin-top:30px;border-radius:15px 15px 0 0}
+        .footer p{font-size:0.9rem}
+        @media print{
+            body{background:#fff;padding:0}
+            .container{max-width:100%;padding:0}
+            .header{background:#2d6a4f!important;color:#fff!important;padding:15px;margin-bottom:15px}
+            .header-buttons,.btn-verify,.btn-scan,.btn-voice,.btn-submit,.quiz-option,input[type="file"]{display:none!important}
+            .card{box-shadow:none;border:1px solid #ddd;margin-bottom:10px;page-break-inside:avoid}
+            .result-box{display:block!important;background:#4361ee!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+            .scan-output,.voice-status,.verified-badge{display:block!important}
+            textarea{border:1px solid #ddd;resize:none}
+            .footer{margin-top:15px;border-radius:0}
+        }
+        @media(max-width:768px){
+            .header h1{font-size:1.5rem}
+            .tagline{font-size:0.8rem}
+            .card{padding:15px}
+            .form-row{grid-template-columns:1fr}
+            .btn{padding:8px 15px;font-size:0.85rem}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌿 AyushSetu - Bridging Ayurveda with AI</h1>
+            <p class="tagline">SIH26047 | Team Codex | Smart India Hackathon 2025</p>
+            <div class="header-buttons">
+                <a href="#" class="btn btn-doctor" onclick="alert('Doctor Login')">👨‍⚕️ Login as Doctor</a>
+                <a href="#" class="btn btn-patient" onclick="alert('Patient Login')">👤 Login as Patient</a>
+            </div>
+        </header>
+
+        <section class="card card-patient">
+            <h2>📋 Patient Details & ABHA</h2>
+            <div class="form-row">
+                <div class="form-group"><label>Patient Name</label><input type="text" id="patientName" placeholder="Name"></div>
+                <div class="form-group"><label>Age</label><input type="number" id="patientAge" placeholder="Age" min="0" max="150"></div>
+                <div class="form-group"><label>Gender</label><select id="patientGender"><option value="">Select</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select></div>
+                <div class="form-group"><label>ABHA ID (14 digits)</label><input type="text" id="abhaId" placeholder="12345678901234" maxlength="14"></div>
+            </div>
+            <button class="btn btn-verify" onclick="verifyABHA()">✓ Verify ABHA</button>
+            <div class="verified-badge" id="verifiedBadge"><span>✅</span><span id="verifiedText">ABHA Verified</span></div>
+            <div class="form-group" style="margin-top:15px"><label>Chief Complaint / Case History</label><textarea id="caseHistory" placeholder="Enter complaints..."></textarea></div>
+        </section>
+
+        <section class="card card-prakriti">
+            <h2>🧘 Prakriti Analysis</h2>
+            <div class="quiz-question">
+                <label>Q1: Body Frame?</label>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q1" value="Vata"> Thin/Light (Vata)</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="Pitta"> Medium (Pitta)</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="Kapha"> Heavy (Kapha)</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <label>Q2: Skin Type?</label>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q2" value="Vata"> Dry (Vata)</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="Pitta"> Oily (Pitta)</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="Kapha"> Soft (Kapha)</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <label>Q3: Nature?</label>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q3" value="Vata"> Active (Vata)</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="Pitta"> Sharp (Pitta)</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="Kapha"> Calm (Kapha)</label>
+                </div>
+            </div>
+            <button class="btn btn-verify" style="background:#4361ee" onclick="calculatePrakriti()">🔍 Result Dekho</button>
+            <div class="result-box" id="prakritiResult"><span id="prakritiText">Your Prakriti: </span></div>
+        </section>
+
+        <section class="card card-scanner">
+            <h2>📄 Medical Report Scanner</h2>
+            <div class="form-group"><label>Upload Report Image</label><input type="file" id="reportImage" accept="image/*"></div>
+            <button class="btn btn-scan" onclick="scanReport()">🔍 Scan Karo</button>
+            <div class="scan-status" id="scanStatus"></div>
+            <div class="scan-output" id="scanOutput">Scanned text here...</div>
+        </section>
+
+        <section class="card card-voice">
+            <h2>🎤 Voice Input</h2>
+            <button class="btn btn-voice" id="voiceBtn" onclick="toggleVoiceInput()">🎤 Bolna Shuru Karo</button>
+            <div class="voice-status" id="voiceStatus">Listening...</div>
+        </section>
+
+        <section class="card card-prescription">
+            <h2>💊 E-Prescription</h2>
+            <div class="form-group"><label>Ayurvedic Medicine</label><textarea id="ayurvedicMedicine" placeholder="Medicines..."></textarea></div>
+            <div class="form-group"><label>Dosha Diet Advice</label><textarea id="doshaDiet" placeholder="Diet..."></textarea></div>
+            <div class="form-group"><label>Yoga & Lifestyle</label><textarea id="yogaAdvice" placeholder="Yoga..."></textarea></div>
+            <button class="btn btn-submit" onclick="generatePDF()">💾 Submit & Generate PDF</button>
+        </section>
+
+        <footer class="footer"><p>Made with ❤️ by Team Codex - SIH26047</p></footer>
+    </div>
+
+    <script>
+        let isListening=false,recognition=null;
+        function initSpeechRecognition(){
+            if('webkitSpeechRecognition'in window||'SpeechRecognition'in window){
+                const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+                recognition=new SR();recognition.lang='hi-IN';recognition.continuous=true;recognition.interimResults=true;
+                recognition.onresult=e=>{let t='';for(let i=e.resultIndex;i<e.results.length;i++)t+=e.results[i][0].transcript+' ';appendToCaseHistory(t)};
+                recognition.onerror=e=>{console.error(e.error);stopVoiceInput()};
+                recognition.onend=()=>{if(isListening)recognition.start()};
+            }else alert('Use Chrome for voice input');
+        }
+        function toggleVoiceInput(){if(!recognition)initSpeechRecognition();isListening?stopVoiceInput():startVoiceInput()}
+        function startVoiceInput(){if(recognition){isListening=true;recognition.start();document.getElementById('voiceBtn').textContent='⏹️ Stop';document.getElementById('voiceStatus').classList.add('listening')}}
+        function stopVoiceInput(){if(recognition){isListening=false;recognition.stop();document.getElementById('voiceBtn').textContent='🎤 Bolna Shuru Karo';document.getElementById('voiceStatus').classList.remove('listening')}}
+        function verifyABHA(){
+            const abhaId=document.getElementById('abhaId').value.trim();
+            const badge=document.getElementById('verifiedBadge');
+            const vText=document.getElementById('verifiedText');
+            const pName=document.getElementById('patientName');
+            if(abhaId.length===14&&/^d{14}$/.test(abhaId)){
+                vText.textContent=`✅ Verified - ${pName.value||'Priya'}`;badge.classList.add('show');
+                document.getElementById('caseHistory').value+=`
+
+[ABHA Verified]
+ID: ${abhaId}
+Patient: ${pName.value||'Priya'}
+Age: ${document.getElementById('patientAge').value||'N/A'}
+Gender: ${document.getElementById('patientGender').value||'N/A'}
+`;
+            }else{alert('Enter valid 14-digit ABHA ID');badge.classList.remove('show')}
+        }
+        function calculatePrakriti(){
+            const c={Vata:0,Pitta:0,Kapha:0};
+            for(let i=1;i<=3;i++){const s=document.querySelector(`input[name="q${i}"]:checked`);if(s)c[s.value]++}
+            const max=Math.max(c.Vata,c.Pitta,c.Kapha);
+            const dom=Object.keys(c).filter(k=>c[k]===max);
+            const res=dom.length>1?`Mixed (${dom.join('-')})`:`${dom[0]}`;
+            document.getElementById('prakritiText').textContent=`Your Prakriti: ${res}`;
+            document.getElementById('prakritiResult').classList.add('show');
+            appendToCaseHistory(`
+
+[Prakriti Result]
+${res}
+`);
+        }
+        async function scanReport(){
+            const fi=document.getElementById('reportImage');
+            const ss=document.getElementById('scanStatus');
+            const so=document.getElementById('scanOutput');
+            if(!fi.files||!fi.files[0]){alert('Select image first');return}
+            const file=fi.files[0];
+            ss.textContent='⏳ Processing...';ss.className='scan-status processing';so.textContent='Scanning...';
+            try{
+                const w=await Tesseract.createWorker({logger:m=>{if(m.status==='recognizing text')ss.textContent=`⏳ ${Math.round(m.progress*100)}%`}});
+                await w.loadLanguage('eng+hin');await w.initialize('eng+hin');
+                const{data:{text}}=await w.recognize(file);
+                so.textContent=text||'No text';ss.textContent='✅ Complete!';ss.className='scan-status success';
+                appendToCaseHistory(`
+
+[OCR Scan]
+${text}
+`);await w.terminate();
+            }catch(e){console.error(e);ss.textContent='❌ Failed';ss.className='scan-status processing';so.textContent='Error'}
+        }
+        function appendToCaseHistory(t){document.getElementById('caseHistory').value+=t}
+        function generatePDF(){
+            const pn=document.getElementById('patientName').value.trim();
+            const ai=document.getElementById('abhaId').value.trim();
+            if(!pn){alert('Enter patient name');return}
+            if(ai.length!==14&&!confirm('ABHA not verified. Continue?'))return;
+            window.print();
+        }
+        document.querySelectorAll('textarea').forEach(t=>t.addEventListener('input',function(){this.style.height='auto';this.style.height=this.scrollHeight+'px'}));
+        document.getElementById('abhaId').addEventListener('input',function(e){this.value=this.value.replace(/[^0-9]/g,'')});
+        window.addEventListener('DOMContentLoaded',()=>{initSpeechRecognition();console.log('🌿 AyushSetu Loaded | SIH26047 Team Codex')});
+    </script>
+</body>
+</html>
