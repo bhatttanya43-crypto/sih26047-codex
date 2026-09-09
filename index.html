@@ -38,6 +38,15 @@ function render(){
 timeline.innerHTML=cases.map(c=>`<div class='border p-2 rounded'><b>${c.name}</b> - ${c.prakriti} (${c.dosha})<br><span class='text-xs'>${c.comp}</span></div>`).join('');
 }
 render();
+</script><script>
+async function scanReport(){
+  const file = document.getElementById('reportUpload').files[0];
+  if(!file){ alert('Photo select karo pehle'); return; }
+  const box = document.getElementById('scanResult');
+  box.innerText = 'Scan ho raha hai...';
+  const result = await Tesseract.recognize(file, 'eng+hin');
+  box.innerText = result.data.text;
+}
 </script>
 </body>
 </html>
