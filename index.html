@@ -3,155 +3,1386 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AYUSH - CODERX SIH26047</title>
+
+<title>AYUSH Smart Case Taking</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f0f7ff}
-header{background:#004aad;color:white;padding:15px;text-align:center}
-.container{max-width:1000px;margin:20px auto;padding:15px}
-.card{background:white;padding:25px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);margin-bottom:20px;border-top:5px solid #004aad}
-.btn{background:#004aad;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;width:100%;margin-top:10px;font-size:16px}
-.btn2{background:#00a86b}
-input,select,textarea{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
-.flex{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
-.flex .card{width:300px;text-align:center;cursor:pointer}
-.hidden{display:none}
-#video{width:100%;max-width:400px;border-radius:10px;border:2px solid #004aad}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:600px){.grid{grid-template-columns:1fr}.flex{flex-direction:column}}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4fbfb;
+    color:#173b57;
+}
+
+header{
+    background:linear-gradient(90deg,#073d62,#078c87);
+    color:white;
+    padding:18px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#8ce7dd;
+}
+
+nav button{
+    background:none;
+    border:none;
+    color:white;
+    margin:5px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.hero{
+    background:linear-gradient(120deg,#073d62,#078c87);
+    color:white;
+    padding:70px 8%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+}
+
+.hero-card{
+    background:white;
+    color:#173b57;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px #0002;
+}
+
+.flow{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.flow span{
+    background:#e5f7f5;
+    padding:12px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+section{
+    padding:45px 6%;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h2{
+    color:#073d62;
+    font-size:35px;
+}
+
+.title p{
+    color:#668090;
+    margin-top:8px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.card{
+    background:white;
+    padding:22px;
+    border-radius:18px;
+    border:1px solid #cce5e5;
+    box-shadow:0 5px 20px #16455b12;
+}
+
+.card h3{
+    color:#078c87;
+    margin:10px 0;
+}
+
+.card ul{
+    padding-left:18px;
+    line-height:1.7;
+    color:#536d7e;
+}
+
+.number{
+    color:#078c87;
+    font-weight:bold;
+}
+
+.offline{
+    background:#073d62;
+    color:white;
+    padding:30px;
+    border-radius:20px;
+}
+
+.offline .flow span{
+    background:#ffffff18;
+    color:white;
+    border:1px solid #ffffff40;
+}
+
+.form{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px #0001;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+    margin:7px 0 15px;
+    border:1px solid #c9dddd;
+    border-radius:8px;
+}
+
+button.primary{
+    background:#078c87;
+    color:white;
+    border:none;
+    padding:13px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button.secondary{
+    background:#e5f5f4;
+    color:#08736f;
+    border:none;
+    padding:13px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.quiz{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px #0001;
+}
+
+.option{
+    display:block;
+    width:100%;
+    text-align:left;
+    padding:15px;
+    margin:10px 0;
+    background:white;
+    border:2px solid #d7e7e7;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.option:hover{
+    border-color:#078c87;
+    background:#e9f8f7;
+}
+
+.result{
+    margin-top:20px;
+    padding:20px;
+    background:#e7f8f4;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+.progress{
+    height:8px;
+    background:#e3eeee;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#078c87;
+    border-radius:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#078c87;
+    color:white;
+    padding:14px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #dceaea;
+}
+
+.tick{
+    color:#15945d;
+    font-weight:bold;
+}
+
+.limited{
+    color:#a27618;
+}
+
+footer{
+    background:#073d62;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:900px){
+
+.hero{
+    grid-template-columns:1fr;
+}
+
+.grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.hero h1{
+    font-size:40px;
+}
+
+}
+
+@media(max-width:600px){
+
+.grid{
+    grid-template-columns:1fr;
+}
+
+nav{
+    display:none;
+}
+
+}
+
 </style>
 </head>
+
+
 <body>
-<header><h2>AYUSH Case-Taking Software | Team CODERX - SIH26047</h2></header>
 
-<div class="container">
 
-<!-- 1. MAIN LOGIN SELECTION -->
-<div id="home" class="card">
-<h2 style="text-align:center">Login As</h2>
-<div class="flex">
-<div class="card" onclick="showPage('doctorLoginPage')"><h3>👨‍⚕️ Doctor Login</h3><p>Case Sheet + Prakriti + Dosha + Scanner</p><button class="btn">Doctor</button></div>
-<div class="card" onclick="showPage('patientLoginPage')"><h3>🧑 Patient Login</h3><p>History + Reports + Follow-up</p><button class="btn btn2">Patient</button></div>
-</div>
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">
+AYUSH<span>Care</span>
 </div>
 
-<!-- 2. DOCTOR LOGIN -->
-<div id="doctorLoginPage" class="card hidden">
-<h2>Doctor Login</h2>
-<input id="dId" placeholder="Doctor ID (demo: doc@ayush.com)">
-<input id="dPass" type="password" placeholder="Password (demo: 1234)">
-<button class="btn" onclick="login('doctor')">Login</button>
-<button class="btn" style="background:#ccc;color:#000" onclick="showPage('home')">Back</button>
+<nav>
+
+<button onclick="scrollToSection('home')">Home</button>
+
+<button onclick="scrollToSection('case')">
+Case Taking
+</button>
+
+<button onclick="scrollToSection('quiz')">
+Prakriti Quiz
+</button>
+
+<button onclick="scrollToSection('comparison')">
+Comparison
+</button>
+
+<button onclick="scrollToSection('login')">
+Login
+</button>
+
+</nav>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<div id="home" class="hero">
+
+<div>
+
+<h1>
+Smart AYUSH Patient Case Taking
+</h1>
+
+<p>
+
+AI-assisted, AYUSH-centric and offline-first
+patient case management system with
+Prakriti/Dosha assessment, voice typing,
+doctor appointments and digital health
+record integration.
+
+</p>
+
 </div>
 
-<!-- 3. PATIENT LOGIN -->
-<div id="patientLoginPage" class="card hidden">
-<h2>Patient Login</h2>
-<input id="pId" placeholder="Patient ID / Mobile (demo: 9876543210)">
-<input id="pPass" type="password" placeholder="Password (demo: 1234)">
-<button class="btn btn2" onclick="login('patient')">Login</button>
-<button class="btn" style="background:#ccc;color:#000" onclick="showPage('home')">Back</button>
+
+<div class="hero-card">
+
+<h2>
+Patient Care Flow
+</h2>
+
+<div class="flow">
+
+<span>Patient</span>
+
+<b>→</b>
+
+<span>Case Taking</span>
+
+<b>→</b>
+
+<span>Prakriti</span>
+
+<b>→</b>
+
+<span>Doctor</span>
+
+<b>→</b>
+
+<span>Follow-up</span>
+
 </div>
 
-<!-- 4. DOCTOR DASHBOARD -->
-<div id="doctorDashboard" class="hidden">
-<div class="card"><h2>Doctor Dashboard</h2><p>Welcome Doctor! <button style="float:right" onclick="logout()">Logout</button></p></div>
+</div>
+
+</div>
+
+
+
+<!-- TECHNICAL APPROACH -->
+
+<section>
+
+<div class="title">
+
+<h2>
+Technical Approach
+</h2>
+
+<p>
+Smart • Secure • Integrated • AYUSH Centric
+</p>
+
+</div>
+
 
 <div class="grid">
-<div class="card">
-<h3>📝 New Case-Taking (Ayush Form)</h3>
-<input id="patName" placeholder="Patient Name">
-<select id="prakriti"><option>Prakriti Select</option><option>Vata</option><option>Pitta</option><option>Kapha</option><option>Vata-Pitta</option></select>
-<select id="dosha"><option>Dosha Imbalance</option><option>Vata</option><option>Pitta</option><option>Kapha</option></select>
-<textarea id="symptoms" placeholder="Symptoms / History"></textarea>
-<textarea id="treatment" placeholder="Treatment / Prescription"></textarea>
-<button class="btn" onclick="saveCase()">Save Case + Generate PDF</button>
-</div>
+
 
 <div class="card">
-<h3>📷 Report Scanner</h3>
-<video id="video" autoplay playsinline></video>
-<canvas id="canvas" class="hidden"></canvas>
-<button class="btn" onclick="startCamera()">1. Camera On</button>
-<button class="btn btn2" onclick="scanReport()">2. Scan Report</button>
-<div id="scanResult"></div>
-</div>
+
+<div class="number">01</div>
+
+<h3>
+User & Authentication
+</h3>
+
+<ul>
+
+<li>Patient Login</li>
+
+<li>Doctor Login</li>
+
+<li>Admin Login</li>
+
+<li>Role Based Access</li>
+
+<li>8-Layer Security</li>
+
+<li>OTP / 2FA Ready</li>
+
+</ul>
+
 </div>
 
-<div class="card"><h3>📜 Saved Cases</h3><div id="caseList">No cases yet</div></div>
+
+
+<div class="card">
+
+<div class="number">02</div>
+
+<h3>
+Frontend / Application
+</h3>
+
+<ul>
+
+<li>HTML</li>
+
+<li>CSS</li>
+
+<li>JavaScript</li>
+
+<li>Flutter Mobile App</li>
+
+<li>Responsive UI</li>
+
+<li>Voice Typing</li>
+
+</ul>
+
 </div>
 
-<!-- 5. PATIENT DASHBOARD -->
-<div id="patientDashboard" class="hidden">
-<div class="card"><h2>Patient Dashboard</h2><p>Welcome Patient! <button style="float:right" onclick="logout()">Logout</button></p></div>
-<div class="card"><h3>Your History</h3><div id="patientHistory"></div></div>
-<div class="card"><h3>Scanned Reports</h3><div id="patientReports"></div></div>
+
+
+<div class="card">
+
+<div class="number">03</div>
+
+<h3>
+API & Security Gateway
+</h3>
+
+<ul>
+
+<li>PHP REST API</li>
+
+<li>Authentication</li>
+
+<li>Authorization</li>
+
+<li>Input Validation</li>
+
+<li>Role Based API</li>
+
+<li>Audit Logging</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="number">04</div>
+
+<h3>
+Backend & Data
+</h3>
+
+<ul>
+
+<li>PHP</li>
+
+<li>MySQL</li>
+
+<li>Patient Profiles</li>
+
+<li>Doctor Profiles</li>
+
+<li>Case History</li>
+
+<li>Appointments</li>
+
+<li>Prescription Records</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="number">05</div>
+
+<h3>
+AI Assisted Case Taking
+</h3>
+
+<ul>
+
+<li>Voice → Text</li>
+
+<li>Case Summarization</li>
+
+<li>History Organization</li>
+
+<li>Patient AI Assistant</li>
+
+<li>Doctor Support Insights</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="number">06</div>
+
+<h3>
+AYUSH Intelligence
+</h3>
+
+<ul>
+
+<li>Prakriti Assessment</li>
+
+<li>Vata Analysis</li>
+
+<li>Pitta Analysis</li>
+
+<li>Kapha Analysis</li>
+
+<li>Ayurvedic Parameters</li>
+
+<li>AYUSH Medical History</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="number">07</div>
+
+<h3>
+ABHA Integration
+</h3>
+
+<ul>
+
+<li>ABHA-linked Identity</li>
+
+<li>Consent Based Access</li>
+
+<li>Available Digital Records</li>
+
+<li>Medical History</li>
+
+<li>Secure Health Data Exchange</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="number">08</div>
+
+<h3>
+Doctor – Patient Services
+</h3>
+
+<ul>
+
+<li>Search Doctor</li>
+
+<li>Doctor Availability</li>
+
+<li>Direct Appointment</li>
+
+<li>Online Consultation</li>
+
+<li>Prescription</li>
+
+<li>Follow-up</li>
+
+</ul>
+
 </div>
 
 </div>
+
+</section>
+
+
+
+<!-- OFFLINE -->
+
+<section>
+
+<div class="title">
+
+<h2>
+Offline-First Architecture
+</h2>
+
+<p>
+Healthcare even in low-network areas
+</p>
+
+</div>
+
+
+<div class="offline">
+
+<div class="flow">
+
+<span>
+📴 No Internet
+<br>
+Case Entry
+</span>
+
+<b>→</b>
+
+<span>
+💾 Local Encrypted Storage
+</span>
+
+<b>→</b>
+
+<span>
+🌐 Network Available
+<br>
+Secure Sync
+</span>
+
+<b>→</b>
+
+<span>
+🗄️ PHP + MySQL
+<br>
+Central Database
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- CASE TAKING -->
+
+<section id="case">
+
+<div class="title">
+
+<h2>
+Digital Patient Case Taking
+</h2>
+
+</div>
+
+
+<div class="form">
+
+<label>
+Patient Name
+</label>
+
+<input
+id="patientName"
+placeholder="Enter patient name"
+>
+
+
+<label>
+Age
+</label>
+
+<input
+id="patientAge"
+type="number"
+placeholder="Age"
+>
+
+
+<label>
+Main Complaint
+</label>
+
+<textarea
+id="complaint"
+rows="4"
+placeholder="Enter symptoms / medical history"
+></textarea>
+
+
+<label>
+Prakriti
+</label>
+
+<input
+id="prakriti"
+readonly
+placeholder="Complete Prakriti Quiz"
+>
+
+
+<label>
+Doctor
+</label>
+
+<input
+id="doctor"
+placeholder="Doctor name"
+>
+
+
+<button
+class="primary"
+onclick="saveCase()"
+>
+Save Case
+</button>
+
+
+<button
+class="secondary"
+onclick="startVoice()"
+>
+🎙 Voice Typing
+</button>
+
+
+<p id="saveMessage"></p>
+
+</div>
+
+</section>
+
+
+
+<!-- PRAKRITI QUIZ -->
+
+<section id="quiz">
+
+<div class="title">
+
+<h2>
+🌿 Prakriti Assessment Quiz
+</h2>
+
+<p>
+Educational demo for Vata, Pitta & Kapha tendency
+</p>
+
+</div>
+
+
+<div class="quiz">
+
+<div class="progress">
+
+<div
+id="progressBar"
+class="progress-bar"
+></div>
+
+</div>
+
+
+<h3 id="question">
+</h3>
+
+
+<div id="options"></div>
+
+
+<button
+class="secondary"
+onclick="previousQuestion()"
+>
+Previous
+</button>
+
+
+<button
+class="primary"
+onclick="nextQuestion()"
+>
+Next
+</button>
+
+
+<div
+id="quizResult"
+class="result"
+style="display:none"
+>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- COMPARISON -->
+
+<section id="comparison">
+
+<div class="title">
+
+<h2>
+Our App vs Typical AYUSH App
+</h2>
+
+<p>
+Feature comparison
+</p>
+
+</div>
+
+
+<div style="overflow-x:auto">
+
+<table>
+
+<tr>
+
+<th>Feature</th>
+
+<th>Typical AYUSH App</th>
+
+<th>Our App</th>
+
+</tr>
+
+
+<tr>
+
+<td>Patient Login</td>
+
+<td class="limited">
+Limited / Varies
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Doctor Login</td>
+
+<td class="limited">
+Limited
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Digital Case Taking</td>
+
+<td class="limited">
+Limited
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Voice Typing</td>
+
+<td class="limited">
+Limited / Varies
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>AI Assistant</td>
+
+<td class="limited">
+Limited
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Prakriti / Dosha</td>
+
+<td class="tick">
+✓
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Doctor Appointment</td>
+
+<td class="limited">
+Limited
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Digital Case History</td>
+
+<td class="limited">
+Limited
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>ABHA Integration</td>
+
+<td class="limited">
+Depends on Integration
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Offline Case Taking</td>
+
+<td class="limited">
+Limited
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>PHP + MySQL Backend</td>
+
+<td class="limited">
+Varies
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Doctor Dashboard</td>
+
+<td class="limited">
+Limited
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Patient Dashboard</td>
+
+<td class="limited">
+Varies
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Follow-up Management</td>
+
+<td class="limited">
+Limited
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Modern + AYUSH Workflow</td>
+
+<td class="limited">
+Partial
+</td>
+
+<td class="tick">
+✓
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- LOGIN -->
+
+<section id="login">
+
+<div class="title">
+
+<h2>
+Role Based Login
+</h2>
+
+</div>
+
+
+<div class="form">
+
+<label>
+Select Role
+</label>
+
+<select id="role">
+
+<option>Patient</option>
+
+<option>Doctor</option>
+
+<option>Admin</option>
+
+</select>
+
+
+<label>
+Username
+</label>
+
+<input
+id="username"
+placeholder="Username"
+>
+
+
+<label>
+Password
+</label>
+
+<input
+id="password"
+type="password"
+placeholder="Password"
+>
+
+
+<button
+class="primary"
+onclick="login()"
+>
+Login
+</button>
+
+
+<p id="loginMessage"></p>
+
+</div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+🌿 AYUSH-CENTRIC
+
+&nbsp; | &nbsp;
+
+🤖 AI-ASSISTED
+
+&nbsp; | &nbsp;
+
+🪪 ABHA-READY
+
+&nbsp; | &nbsp;
+
+📴 OFFLINE-FIRST
+
+&nbsp; | &nbsp;
+
+👨‍⚕️ DOCTOR–PATIENT CONNECTED
+
+<br><br>
+
+<b>
+MAKE AYUSH PATIENT CARE SMARTER, FASTER & CONNECTED.
+</b>
+
+</footer>
+
+
 
 <script>
-function showPage(id){
- document.querySelectorAll('.container > div').forEach(d=>d.classList.add('hidden'));
- document.getElementById(id).classList.remove('hidden');
- if(id=='doctorDashboard') loadCases();
- if(id=='patientDashboard') loadPatient();
-}
-function login(role){
- localStorage.setItem('role',role);
- if(role=='doctor') showPage('doctorDashboard');
- else showPage('patientDashboard');
-}
-function logout(){localStorage.clear();showPage('home')}
 
-// Scanner Code
-let stream;
-async function startCamera(){
- try{
-  stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});
-  document.getElementById('video').srcObject = stream;
- }catch(e){alert('Camera permission do: '+e)}
-}
-function scanReport(){
- let v=document.getElementById('video'), c=document.getElementById('canvas');
- c.width=v.videoWidth; c.height=v.videoHeight;
- c.getContext('2d').drawImage(v,0,0);
- let img=c.toDataURL('image/png');
- let reports=JSON.parse(localStorage.getItem('reports')||'[]');
- reports.push({img,date:new Date().toLocaleString()});
- localStorage.setItem('reports',JSON.stringify(reports));
- document.getElementById('scanResult').innerHTML=`<p>✅ Scanned!</p><img src="${img}" width="100%" style="border-radius:8px">`;
- loadPatient();
+
+/* NAVIGATION */
+
+function scrollToSection(id){
+
+document
+.getElementById(id)
+.scrollIntoView({
+behavior:"smooth"
+});
+
 }
 
-// Case Save
+
+
+/* CASE STORAGE */
+
 function saveCase(){
- let data={
-  name:patName.value, prakriti:prakriti.value, dosha:dosha.value,
-  symptoms:symptoms.value, treatment:treatment.value, date:new Date().toLocaleString()
- };
- let cases=JSON.parse(localStorage.getItem('cases')||'[]');
- cases.push(data);
- localStorage.setItem('cases',JSON.stringify(cases));
- alert('Case Saved! PDF Ready (Demo)');
- loadCases(); 
- // PDF generate: window.print() se Ayush sheet print hogi
-}
-function loadCases(){
- let cases=JSON.parse(localStorage.getItem('cases')||'[]');
- let html=cases.map(c=>`<div style="border:1px solid #ddd;padding:10px;margin:5px;border-radius:8px"><b>${c.name}</b> - ${c.prakriti}/${c.dosha}<br><small>${c.date}</small><br>${c.symptoms}</div>`).join('');
- document.getElementById('caseList').innerHTML=html||'No cases';
- document.getElementById('patientHistory').innerHTML=html||'No history';
-}
-function loadPatient(){
- let r=JSON.parse(localStorage.getItem('reports')||'[]');
- document.getElementById('patientReports').innerHTML=r.map(x=>`<div style="margin:5px"><img src="${x.img}" width="100%" style="border-radius:8px"><small>${x.date}</small></div>`).join('')||'No reports';
- loadCases();
+
+let data={
+
+name:
+document.getElementById("patientName").value,
+
+age:
+document.getElementById("patientAge").value,
+
+complaint:
+document.getElementById("complaint").value,
+
+prakriti:
+document.getElementById("prakriti").value,
+
+doctor:
+document.getElementById("doctor").value
+
+};
+
+localStorage.setItem(
+"AYUSH_CASE",
+JSON.stringify(data)
+);
+
+document.getElementById(
+"saveMessage"
+).innerHTML=
+"✅ Case saved locally. It can be synced with the server when network is available.";
+
 }
 
-// Auto check login
-if(localStorage.getItem('role')=='doctor') showPage('doctorDashboard');
-if(localStorage.getItem('role')=='patient') showPage('patientDashboard');
-</script>
-</body>
-</html>
+
+
+/* VOICE TYPING */
+
+function startVoice(){
+
+let SpeechRecognition =
+window.SpeechRecognition ||
+window.webkitSpeechRecognition;
+
+if(!SpeechRecognition){
+
+alert(
+"Voice typing is not supported in this browser."
+);
+
+return;
+
+}
+
+let recognition =
+new SpeechRecognition();
+
+recognition.lang="en-IN";
+
+recognition.start();
+
+recognition.onresult=function(event){
+
+let text=
+event.results[0][0].transcript;
+
+document.getElementById(
+"complaint"
+).value +=
+" "+text;
+
+};
+
+}
+
+
+
+/* PRAKRITI QUIZ */
+
+
+const questions=[
+
+{
+question:
+"Your body frame is usually:",
+options:[
+"Light / slender",
+"Medium / athletic",
+"Broad / sturdy"
+],
+dosha:[0,1,2]
+},
+
+{
+question:
+"Your skin is usually:",
+options:[
+"Dry",
+"Warm / sensitive",
+"Soft / oily"
+],
+dosha:[0,1,2]
+},
+
+{
+question:
+"Your appetite is:",
+options:[
+"Variable",
+"Strong",
+"Steady"
+],
+dosha:[0,1,2]
+},
+
+{
+question:
+"Your sleep is generally:",
+options:[
+"Light / irregular",
+"Moderate",
+"Deep / long"
+],
+dosha:[0,1,2]
+},
+
+{
+question:
+"Your natural activity level is:",
+options:[
+"Quick / energetic",
+"Focused / intense",
+"Calm / steady"
+],
+dosha:[0,1,2]
+},
+
+{
+question:
+"Under stress you usually:",
+options:[
+"Worry / change quickly",
+"Become intense",
+"Become withdrawn"
+],
+dosha:[0,1
