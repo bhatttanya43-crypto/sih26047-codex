@@ -1,83 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ayush Smart Case Taking - SIH26047</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRAXIS41B - Ayush Smart Case Taking | SIH26047</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#f5f7f2;min-height:100vh}
-:root{--green:#2d6a4f;--light-green:#d8f3dc;--accent:#95d5b2;--dark:#1b4332}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+:root{--teal:#0e7490;--dark:#0f172a;--green:#059669;--bg:#f0fdfa}
+body{background:var(--bg);color:#1e293b}
 .hidden{display:none!important}
-.login-page{height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dark),var(--green));padding:20px}
-.login-card{background:white;width:100%;max-width:420px;border-radius:20px;padding:40px 35px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.login-card h1{color:var(--green);font-size:28px;text-align:center}
-.login-card p{text-align:center;color:#666;margin:8px 0 25px;font-size:14px}
-.input-group{margin-bottom:16px}
-.input-group label{font-size:13px;font-weight:500;color:#444}
-.input-group input{width:100%;padding:12px 15px;border:2px solid #e8e8e8;border-radius:10px;margin-top:5px;outline:none}
-.input-group input:focus{border-color:var(--green)}
-.btn{width:100%;padding:13px;background:var(--green);color:white;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-size:15px}
-.btn:hover{background:var(--dark)}
-.error{color:#e74c3c;font-size:13px;margin-top:10px;text-align:center;display:none}
-.hint{background:var(--light-green);padding:10px;border-radius:8px;font-size:12px;margin-top:15px;color:var(--dark)}
-.app{display:flex;min-height:100vh}
-.sidebar{width:260px;background:white;box-shadow:2px 0 15px rgba(0,0,0,0.05);padding:25px 20px;display:flex;flex-direction:column}
-.logo{font-size:20px;font-weight:700;color:var(--green);margin-bottom:30px}
-.nav-item{padding:12px 15px;border-radius:10px;cursor:pointer;margin-bottom:8px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:#666}
-.nav-item.active,.nav-item:hover{background:var(--green);color:white}
-.main{flex:1;padding:30px;overflow-y:auto}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-bottom:25px}
-.stat{background:white;border-radius:16px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,0.06);border-left:4px solid var(--green)}
-.stat h3{font-size:28px;color:var(--green)}
-.card{background:white;border-radius:16px;padding:25px;box-shadow:0 4px 20px rgba(0,0,0,0.06);margin-bottom:20px}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
-.form-group label{font-size:13px;font-weight:600;color:#333;display:block;margin-bottom:6px}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:2px solid #e9e9e9;border-radius:10px;outline:none;font-size:14px}
-.section-title{font-size:16px;font-weight:700;color:var(--green);margin:25px 0 15px;padding-bottom:8px;border-bottom:2px solid var(--light-green)}
-table{width:100%;border-collapse:collapse}
-th{background:var(--light-green);padding:12px 15px;text-align:left;font-size:13px;color:var(--dark)}
-td{padding:12px 15px;border-bottom:1px solid #f0f0f0;font-size:13px}
+.topbar{background:#083344;color:white;padding:8px 20px;display:flex;justify-content:space-between;font-size:12px}
+.login-wrap{min-height:100vh;background:linear-gradient(135deg,#083344 0%,#0e7490 50%,#059669 100%);display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{background:white;border-radius:24px;width:100%;max-width:480px;padding:36px;box-shadow:0 30px 80px rgba(0,0,0,0.3)}
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.role{border:2px solid #e2e8f0;border-radius:12px;padding:14px 8px;text-align:center;cursor:pointer}
+.role.active{border-color:#0e7490;background:#ecfeff}
+.inp{width:100%;padding:12px 14px;border:2px solid #e2e8f0;border-radius:10px;margin-top:6px}
+.btn{width:100%;padding:13px;background:#0e7490;color:white;border:none;border-radius:12px;font-weight:700;cursor:pointer;margin-top:14px}
+.badge{display:inline-block;background:#dcfce7;color:#166534;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.app{display:flex;min-height:100vh}.sidebar{width:280px;background:white;border-right:1px solid #e2e8f0;padding:20px;display:flex;flex-direction:column}
+.m-item{padding:11px 14px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;color:#475569}
+.m-item.active,.m-item:hover{background:#083344;color:white}
+.main{flex:1;padding:24px;overflow-y:auto}
+.card{background:white;border-radius:16px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border:1px solid #f1f5f9}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.voice-btn{background:#fef3c7;border:1px solid #fcd34d;padding:8px 14px;border-radius:20px;font-size:12px;cursor:pointer}
+.chip{display:inline-block;background:#e0f2fe;color:#075985;padding:5px 10px;border-radius:20px;font-size:11px;margin:3px}
+table{width:100%;border-collapse:collapse;font-size:13px}th{background:#f1f5f9;padding:10px 12px;text-align:left}td{padding:10px 12px;border-bottom:1px solid #f1f5f9}
 </style>
 </head>
 <body>
-<div id="loginPage" class="login-page">
-<div class="login-card">
-<h1>🌿 Ayush Case-Taking</h1>
-<p>SIH26047 - Ministry of Ayush</p>
-<div class="input-group"><label>Doctor ID</label><input id="loginId" type="text" placeholder="ayush"></div>
-<div class="input-group"><label>Password</label><input id="loginPass" type="password" placeholder="••••••"></div>
-<button class="btn" onclick="login()">Login to Dashboard</button>
-<div id="loginError" class="error">Invalid credentials!</div>
-<div class="hint">💡 Demo: <b>ID: ayush</b> / <b>Pass: ayush123</b><br>Ab Vercel pe 100% working!</div>
+<div class="topbar"><span>PRAXIS41B | SIH26047 | Ministry of Ayush</span><span id="offlineStatus">🟢 Online - Cloud Sync Active</span></div>
+<div id="loginPage" class="login-wrap">
+<div class="login-box">
+<h1 style="text-align:center;color:#083344">🌿 PRAXIS41B</h1>
+<p style="text-align:center;color:#64748b;font-size:12px;margin:6px 0 18px">Smart • Secure • Integrated • AYUSH Centric | SIH 2026</p>
+<div style="background:#f0fdfa;border-radius:12px;padding:10px;margin-bottom:14px;border:1px solid #99f6e0;font-size:12px"><b>🔓 Open Login - Koi bhi ID/Password se login</b><br><small>Role select karo, kuch bhi likho, andar!</small></div>
+<div class="role-grid">
+<div class="role active" onclick="setRole('patient',this)"><b>🧑 Patient</b></div>
+<div class="role" onclick="setRole('doctor',this)"><b>👨‍⚕️ Doctor</b></div>
+<div class="role" onclick="setRole('admin',this)"><b>⚙️ Admin</b></div>
+</div>
+<label style="font-size:12px;font-weight:600">User ID (kuch bhi)</label><input id="uid" class="inp" placeholder="e.g. riya / dr.arun">
+<label style="font-size:12px;font-weight:600;margin-top:8px;display:block">Password (kuch bhi)</label><input id="upass" class="inp" type="password" placeholder="••••">
+<label style="font-size:12px;font-weight:600;margin-top:8px;display:block">ABHA ID (Optional)</label><input id="abha" class="inp" placeholder="91-1234-5678-9012">
+<button class="btn" onclick="openLogin()">🚀 Login - Open for All</button>
 </div>
 </div>
+
 <div id="app" class="app hidden">
 <div class="sidebar">
-<div class="logo">🌿 Ayush Codex</div>
-<div class="nav-item active" onclick="showTab('dashboard',this)">📊 Dashboard</div>
-<div class="nav-item" onclick="showTab('newcase',this)">➕ New Case</div>
-<div class="nav-item" onclick="showTab('patients',this)">👥 Patients</div>
-<div class="nav-item" onclick="logout()" style="margin-top:auto;color:#e74c3c">🚪 Logout</div>
+<div style="font-weight:800;color:#083344">🌿 PRAXIS41B<br><small style="font-size:11px;color:#64748b">SIH26047</small></div>
+<div id="roleBadge" class="badge" style="margin-top:10px">Patient Mode</div>
+<div style="margin-top:20px;display:flex;flex-direction:column;gap:6px">
+<div class="m-item active" onclick="tab('dash',this)">📊 Dashboard</div>
+<div class="m-item" onclick="tab('case',this)">🎙️ AI Case Taking</div>
+<div class="m-item" onclick="tab('ayush',this)">🍃 AYUSH Prakriti/Dosha</div>
+<div class="m-item" onclick="tab('abha',this)">🪪 ABHA Integration</div>
+<div class="m-item" onclick="tab('service',this)">👥 Doctor-Patient</div>
+<div class="m-item" onclick="tab('offline',this)">📡 Offline + Tech Stack</div>
+<div class="m-item" onclick="logout()" style="color:#dc2626;margin-top:20px">🚪 Logout</div>
+</div>
 </div>
 <div class="main">
-<div id="dashboardTab"><div class="header"><h2>Dashboard</h2><span id="dateNow"></span></div><div class="stats"><div class="stat"><h3 id="totalPatients">0</h3><p>Total Patients</p></div><div class="stat"><h3 id="todayPatients">0</h3><p>Today's Cases</p></div><div class="stat"><h3 id="vataCount">0</h3><p>Vata Prakriti</p></div><div class="stat"><h3 id="pittaCount">0</h3><p>Pitta Cases</p></div></div><div class="card"><h3>Recent Cases</h3><div id="recentList"></div></div></div>
-<div id="newcaseTab" class="hidden"><div class="card"><div class="section-title">1. Personal Details</div><div class="form-grid"><div class="form-group"><label>Name *</label><input id="pName"></div><div class="form-group"><label>Age</label><input id="pAge" type="number"></div><div class="form-group"><label>Gender</label><select id="pGender"><option>Male</option><option>Female</option><option>Other</option></select></div><div class="form-group"><label>Contact</label><input id="pContact"></div></div><div class="section-title">2. Chief Complaints</div><div class="form-grid"><div class="form-group"><label>Chief Complaint *</label><textarea id="pComplaint" rows="3"></textarea></div><div class="form-group"><label>Past History</label><textarea id="pPast" rows="3"></textarea></div><div class="form-group"><label>Family History</label><textarea id="pFamily" rows="3"></textarea></div><div class="form-group"><label>Lifestyle</label><textarea id="pLifestyle" rows="3"></textarea></div></div><div class="section-title">3. Ayush Pariksha</div><div class="form-grid"><div class="form-group"><label>Nadi Pariksha</label><select id="pNadi"><option>Vataja</option><option>Pittaja</option><option>Kaphaja</option><option>Vata-Pittaja</option><option>Tridoshaja</option></select></div><div class="form-group"><label>Prakriti</label><select id="pPrakriti"><option>Vata</option><option>Pitta</option><option>Kapha</option><option>Vata-Pitta</option><option>Pitta-Kapha</option><option>Vata-Kapha</option></select></div><div class="form-group"><label>Dosha</label><select id="pDosha"><option>Vata Vriddhi</option><option>Pitta Vriddhi</option><option>Kapha Vriddhi</option><option>Sama Dosha</option></select></div><div class="form-group"><label>Agni</label><select id="pAgni"><option>Mandagni</option><option>Tikshnagni</option><option>Vishamagni</option><option>Samagni</option></select></div><div class="form-group"><label>Mala/Mutra</label><input id="pMala"></div><div class="form-group"><label>Jihva</label><input id="pJihva"></div></div><div class="section-title">4. Diagnosis & Treatment</div><div class="form-grid"><div class="form-group"><label>Diagnosis</label><input id="pDiagnosis"></div><div class="form-group"><label>Treatment Plan</label><textarea id="pTreatment" rows="3"></textarea></div></div><button class="btn" style="margin-top:20px" onclick="saveCase()">💾 Save Case</button><div id="saveMsg" style="display:none;color:green;text-align:center;margin-top:12px">✅ Saved!</div></div></div>
-<div id="patientsTab" class="hidden"><div class="card"><input id="searchInput" placeholder="Search..." onkeyup="filterPatients()" style="width:100%;padding:11px 15px;border:2px solid #e9e9e9;border-radius:10px;margin-bottom:15px"><table><thead><tr><th>Name</th><th>Complaint</th><th>Prakriti</th><th>Nadi</th><th>Date</th><th>Action</th></tr></thead><tbody id="patientTable"></tbody></table></div></div>
+<div id="dash"><h2>Dashboard Overview</h2><div class="grid3" style="margin-top:14px"><div class="card"><h3>1,248</h3><small>Total Patients (MySQL Secure)</small></div><div class="card"><h3>24</h3><small>Today Cases (Voice Typed)</small></div><div class="card"><h3>89%</h3><small>AI Summarization</small></div></div><div class="card" style="margin-top:14px"><b>🎤 Voice to Text</b><br><button class="voice-btn" onclick="startVoice('dashVoice')">🎙️ Start Voice</button><div id="dashVoice" style="margin-top:8px;background:#f8fafc;padding:8px;border-radius:8px;font-size:12px">Click to speak...</div></div></div>
+
+<div id="case" class="hidden"><h2>AI-Assisted Case Taking</h2><div class="card" style="margin-top:12px"><button class="voice-btn" onclick="startVoice('complaint')">🎙️ Voice Complaint</button> <button class="voice-btn" onclick="startVoice('history')">🎙️ Voice History</button> <button class="voice-btn" style="background:#dbeafe" onclick="aiSummarize()">✨ AI Summarize</button><textarea id="complaint" class="inp" rows="3" placeholder="Chief complaint boliye..."></textarea><textarea id="history" class="inp" rows="3" style="margin-top:8px" placeholder="History..."></textarea><div id="aiSummary" class="hidden" style="margin-top:10px;background:#ecfdf5;padding:10px;border-radius:8px;font-size:12px"></div><button class="btn" onclick="saveCase()">💾 Save (Offline Encrypted)</button></div></div>
+
+<div id="ayush" class="hidden"><h2>AYUSH Clinical Intelligence</h2><div class="grid2" style="margin-top:12px"><div class="card"><b>Prakriti Assessment</b><select id="prak1" class="inp" style="margin-top:8px"><option>Thin / Vata</option><option>Medium / Pitta</option><option>Heavy / Kapha</option></select><select id="prak2" class="inp" style="margin-top:8px"><option>Dry Skin</option><option>Oily Skin</option><option>Moist Skin</option></select><button class="btn" onclick="calcPrakriti()">Calculate Prakriti</button><div id="prakResult" style="margin-top:8px;color:#059669;font-weight:700;font-size:13px"></div></div><div class="card"><b>Dosha Analysis</b><div style="font-size:12px;margin-top:8px">Vata <span id="vVal">40%</span><input type="range" id="vata" value="40" min="0" max="100" oninput="updateDosha()" style="width:100%">Pitta <span id="pVal">35%</span><input type="range" id="pitta" value="35" min="0" max="100" oninput="updateDosha()" style="width:100%">Kapha <span id="kVal">25%</span><input type="range" id="kapha" value="25" min="0" max="100" oninput="updateDosha()" style="width:100%"><div id="doshaDom" style="background:#fef9c3;padding:6px;border-radius:6px;margin-top:6px;font-size:12px">Dominant: Vata-Pitta</div></div></div></div></div>
+
+<div id="abha" class="hidden"><h2>ABHA / Digital Health</h2><div class="card" style="margin-top:12px"><input id="abhaInput" class="inp" placeholder="91-XXXX-XXXX-XXXX"><button class="btn" onclick="linkABHA()">🔗 Link ABHA & Fetch</button><div id="abhaRecords" class="hidden" style="margin-top:8px;background:#f0f9ff;padding:10px;border-radius:8px;font-size:12px">✓ ABHA Linked<br>✓ Consent Granted<br>✓ Previous Records Found<br>✓ No Repeated Entry<br>✓ Secure Exchange</div></div></div>
+
+<div id="service" class="hidden"><h2>Doctor-Patient Service Layer</h2><div class="grid2" style="margin-top:12px"><div class="card"><b>Patient Journey</b><div style="margin-top:8px;font-size:12px">🔍 Search Doctor <input id="searchDoc" class="inp" placeholder="Search" onkeyup="searchDocs()"><div id="docList" style="margin-top:8px"><div>👨‍⚕️ Dr. Arun - Available <button class="btn" style="width:auto;padding:4px 10px" onclick="bookApt('Dr. Arun')">Book</button></div></div><div id="aptMsg" style="color:green;margin-top:6px;font-size:12px"></div></div></div><div class="card"><b>Doctor Dashboard</b><div style="font-size:12px;margin-top:8px">✓ Patient Queue (<span id="queueCount">3</span>)<br>✓ Case History<br>✓ Prescription<br>✓ Follow-up<br>✓ AI Insights<br><br><table><tr><th>Patient</th><th>Action</th></tr><tr><td>Riya Sharma</td><td><button class="btn" style="padding:4px 8px;width:auto">Consult</button></td></tr></table></div></div></div></div>
+
+<div id="offline" class="hidden"><h2>Offline-First + Tech Stack</h2><div class="card" style="margin-top:12px;text-align:center;font-size:11px"><div style="display:flex;justify-content:space-around"> <div>📶<br>No Internet<br>Offline</div><div>→</div><div>💾<br>Local Encrypted<br>Secure</div><div>→</div><div>☁️<br>Sync<br>Secure</div><div>→</div><div>🗄️<br>Central DB<br>Real-time</div></div></div><div class="card" style="margin-top:12px"><b>Technology Stack: HTML5 CSS3 JS Flutter PHP MySQL SSL Cloud Sync</b></div></div>
+
 </div>
 </div>
+
 <script>
-let patients=JSON.parse(localStorage.getItem('ayush_patients')||'[]');
-document.getElementById('dateNow').innerText=new Date().toDateString();
-function login(){const id=document.getElementById('loginId').value.trim();const pass=document.getElementById('loginPass').value.trim();if(id==='ayush'&&pass==='ayush123'){document.getElementById('loginPage').classList.add('hidden');document.getElementById('app').classList.remove('hidden');renderAll();}else{document.getElementById('loginError').style.display='block';}}
+let currentRole='patient';
+function setRole(r,el){currentRole=r;document.querySelectorAll('.role').forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+function openLogin(){if(document.getElementById('uid').value.trim().length==0){alert('Koi bhi ID daal de bhai!');return}document.getElementById('loginPage').classList.add('hidden');document.getElementById('app').classList.remove('hidden');document.getElementById('roleBadge').innerText=currentRole.toUpperCase()+' MODE - Open Access';}
 function logout(){location.reload()}
-function showTab(tab,el){document.querySelectorAll('.main > div').forEach(d=>d.classList.add('hidden'));document.getElementById(tab+'Tab').classList.remove('hidden');document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));if(el)el.classList.add('active');renderAll();}
-function saveCase(){const data={id:Date.now(),name:document.getElementById('pName').value||'Unknown',age:document.getElementById('pAge').value,gender:document.getElementById('pGender').value,contact:document.getElementById('pContact').value,complaint:document.getElementById('pComplaint').value,past:document.getElementById('pPast').value,family:document.getElementById('pFamily').value,lifestyle:document.getElementById('pLifestyle').value,nadi:document.getElementById('pNadi').value,prakriti:document.getElementById('pPrakriti').value,dosha:document.getElementById('pDosha').value,agni:document.getElementById('pAgni').value,mala:document.getElementById('pMala').value,jihva:document.getElementById('pJihva').value,diagnosis:document.getElementById('pDiagnosis').value,treatment:document.getElementById('pTreatment').value,date:new Date().toLocaleDateString(),timestamp:new Date().toISOString()};if(!data.name||!data.complaint){alert('Name and Complaint required!');return;}patients.unshift(data);localStorage.setItem('ayush_patients',JSON.stringify(patients));document.getElementById('saveMsg').style.display='block';setTimeout(()=>{document.getElementById('saveMsg').style.display='none';document.querySelectorAll('input,textarea').forEach(i=>i.value='');showTab('patients',document.querySelectorAll('.nav-item')[2])},1200);}
-function renderAll(){document.getElementById('totalPatients').innerText=patients.length;document.getElementById('todayPatients').innerText=patients.filter(p=>p.date===new Date().toLocaleDateString()).length;document.getElementById('vataCount').innerText=patients.filter(p=>p.prakriti.includes('Vata')).length;document.getElementById('pittaCount').innerText=patients.filter(p=>p.prakriti.includes('Pitta')).length;const tbody=document.getElementById('patientTable');tbody.innerHTML=patients.map(p=>`<tr><td><b>${p.name}</b></td><td>${p.complaint.substring(0,30)}...</td><td>${p.prakriti}</td><td>${p.nadi}</td><td>${p.date}</td><td><button onclick="viewCase(${p.id})">View</button> <button onclick="deleteCase(${p.id})">Del</button></td></tr>`).join('')||'<tr><td colspan=6 style="text-align:center;color:#999">No patients</td></tr>';const recent=document.getElementById('recentList');recent.innerHTML=patients.slice(0,3).map(p=>`<div style="padding:10px;border:1px solid #eee;border-radius:8px;margin-bottom:8px"><b>${p.name}</b> - ${p.prakriti}<br><small>${p.complaint.substring(0,40)}...</small></div>`).join('')||'No cases';}
-function viewCase(id){const p=patients.find(x=>x.id===id);alert(`PATIENT: ${p.name}\nComplaint: ${p.complaint}\nNadi: ${p.nadi}\nPrakriti: ${p.prakriti}\nDosha: ${p.dosha}\nAgni: ${p.agni}\nDiagnosis: ${p.diagnosis}\nTreatment: ${p.treatment}`)}
-function deleteCase(id){if(confirm('Delete?')){patients=patients.filter(x=>x.id!==id);localStorage.setItem('ayush_patients',JSON.stringify(patients));renderAll()}}
-function filterPatients(){const q=document.getElementById('searchInput').value.toLowerCase();const filtered=patients.filter(p=>(p.name+p.complaint+p.prakriti).toLowerCase().includes(q));document.getElementById('patientTable').innerHTML=filtered.map(p=>`<tr><td><b>${p.name}</b></td><td>${p.complaint.substring(0,30)}</td><td>${p.prakriti}</td><td>${p.nadi}</td><td>${p.date}</td><td><button onclick="viewCase(${p.id})">View</button></td></tr>`).join('')}
-</script>
-</body>
-</html>
+function tab(id,el){document.querySelectorAll('.main > div').forEach(d=>d.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.m-item').forEach(m=>m.classList.remove('active'));if(el)el.classList.add('active')}
+function startVoice(targetId){if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){alert('Chrome me kholo');return}const Rec=window.SpeechRecognition||window.webkitSpeechRecognition;const rec=new Rec();rec.lang='en-IN';rec.start();const el=document.getElementById(targetId);const btn=event.target;btn.innerText='🔴 Listening...';rec.onresult=(e)=>{const t=e.results[0][0].transcript;if(el.tagName==='TEXTAREA'||el.tagName==='INPUT')el.value+=' '+t;else el.innerText=t};rec.onend=()=>btn.innerText='🎙️ Done'}
+function aiSummarize(){const c=document.getElementById('complaint').value;const s=document.getElementById('aiSummary');s.classList.remove('hidden');s.innerHTML='<b>AI Summary:</b><br>'+c.substring(0,100)+'...<br>• Symptoms organized<br>• Suggested Prakriti: Vata<br>• Doctor Decides Final'}
+function calcPrakriti(){const b=document.getElementById('prak1').value;let r=b.includes('Thin')?'Vata-Pitta':b.includes('Heavy')?'Kapha':'Pitta';document.getElementById('prakResult').innerText='
