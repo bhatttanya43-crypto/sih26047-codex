@@ -1,36 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AYUSH CARE - SIH 2026 | CODERX</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');body{font-family:'Poppins',sans-serif}</style>
-</head>
-<body class="bg-[#fff5f7] min-h-screen">
-<header class="bg-white shadow sticky top-0 z-50 border-b-4 border-pink-500">
-<div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-<div class="flex items-center gap-3"><span class="border-2 border-pink-500 rounded-full px-3 py-1 text-xs font-bold">CODERX</span>
-<h1 class="text-xl font-bold"><span>AYUSH</span> <span class="text-pink-600">CARE</span><span class="text-[9px] block -mt-1 font-normal">SMART CASE TAKING • EASY ACCESS • BETTER HEALTH</span></h1></div>
-<div class="flex gap-2"><span class="text-[10px] font-bold hidden md:block">SMART INDIA<br>HACKATHON 2026</span><button onclick="alert('Login: Patient/Doctor - Working with LocalStorage')" class="bg-pink-600 text-white px-4 py-2 rounded-full text-sm">Login</button></div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AYUSH CARE - Patient + Doctor</title><script src="https://cdn.tailwindcss.com"></script><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"><style>body{font-family:Poppins,sans-serif}</style></head><body class="bg-[#FFF5F7]">
+<header class="bg-white shadow sticky top-0 z-50">
+<div class="max-w-6xl mx-auto p-3 flex justify-between items-center">
+<div class="flex items-center gap-2"><span class="border-2 border-pink-700 px-3 py-1 rounded-full font-bold text-xs">CODERX</span><div><h1 class="font-bold leading-none">AYUSH <span class="text-pink-700">CARE</span></h1><p class="text-[8px] text-gray-500">SMART CASE TAKING</p></div></div>
+<button id="authBtn" onclick="openLogin()" class="bg-[#8B1E3F] text-white px-5 py-2 rounded-full text-xs">Login</button>
+</div>
+<div class="bg-[#8B1E3F] text-white flex justify-around text-xs font-semibold">
+<button onclick="showPage('home')" class="py-3 border-b-2 border-white">Home</button>
+<button onclick="showPage('quiz')" class="py-3">Prakriti Quiz</button>
+<button onclick="showPage('doctors')" class="py-3">Doctors</button>
+<button id="navCases" onclick="showPage('cases')" class="py-3">My Cases</button>
 </div>
 </header>
-<nav class="bg-pink-600 text-white flex overflow-x-auto text-sm">
-<button onclick="show('home')" class="px-5 py-3 font-bold border-b-4 border-white">Home</button>
-<button onclick="show('quiz')" class="px-5 py-3">Prakriti Quiz</button>
-<button onclick="show('doctors')" class="px-5 py-3">Find Doctors</button>
-<button onclick="show('case')" class="px-5 py-3">Case Taking</button>
-<button onclick="show('history')" class="px-5 py-3">My Records</button>
-<button onclick="show('appointments')" class="px-5 py-3">Appointments</button>
-</nav>
-<div class="max-w-7xl mx-auto p-4">
-<section id="home" class="sec"><div class="bg-white rounded-xl p-5 shadow border-l-4 border-pink-500"><h2 class="font-bold text-pink-600">OUR SOLUTION - AYUSH Care + Prakriti Quiz</h2><p class="text-sm mt-2">Digital platform for AYUSH doctors. Now with <b>Prakriti Quiz, Dosha Analysis, Diet/Yoga recommendation, Appointment Booking, Secure Records</b>. Everything from your poster is working.</p><button onclick="show('quiz')" class="mt-3 bg-pink-600 text-white px-6 py-2 rounded-full font-bold">Start Prakriti Quiz</button></div></section>
-<section id="quiz" class="sec hidden"><div class="bg-white rounded-xl p-6 shadow max-w-3xl mx-auto"><div class="flex justify-between"><h2 class="font-bold">Prakriti Parikshan (20 Qs)</h2><span id="prog" class="bg-pink-100 px-3 py-1 rounded-full text-xs">0/20</span></div><div id="qBox" class="mt-4"></div><div id="qRes" class="hidden"></div></div></section>
-<section id="doctors" class="sec hidden"><input id="docSearch" oninput="renderDocs()" placeholder="Search Ayurveda Yoga Unani..." class="w-full border p-3 rounded-full mt-2"><div id="docList" class="grid md:grid-cols-3 gap-4 mt-4"></div></section>
-<section id="case" class="sec hidden"><div class="bg-white p-6 rounded-xl shadow max-w-4xl mx-auto"><h2 class="font-bold">Digital Case Taking</h2><form onsubmit="saveCase(event)" class="grid md:grid-cols-2 gap-3 mt-4"><input required id="pName" placeholder="Patient Name" class="border p-3 rounded-lg"><input required id="pAge" type="number" placeholder="Age" class="border p-3 rounded-lg"><select id="ayushType" class="border p-3 rounded-lg"><option>Ayurveda</option><option>Yoga</option><option>Unani</option><option>Siddha</option><option>Homeopathy</option></select><select id="pGender" class="border p-3 rounded-lg"><option>Male</option><option>Female</option></select><input required id="pComp" placeholder="Chief Complaint" class="md:col-span-2 border p-3 rounded-lg"><textarea id="pHist" placeholder="Prakriti / Nadi / History" class="md:col-span-2 border p-3 rounded-lg"></textarea><textarea id="pPres" placeholder="Prescription / Yoga / Diet" class="md:col-span-2 border p-3 rounded-lg"></textarea><button class="md:col-span-2 bg-pink-600 text-white py-3 rounded-full font-bold">Save Case</button></form></div></section>
-<section id="history" class="sec hidden"><div class="bg-white p-5 rounded-xl shadow"><h2 class="font-bold">My Records (Secure & Cloud - LocalStorage Demo)</h2><div id="recList" class="mt-4 space-y-3"></div></div></section>
-<section id="appointments" class="sec hidden"><div class="bg-white p-5 rounded-xl shadow max-w-3xl mx-auto"><h2 class="font-bold">Book Appointment (Free)</h2><form onsubmit="bookApp(event)" class="grid md:grid-cols-3 gap-2 mt-4"><select id="appDoc" class="border p-3 rounded-lg"></select><input id="appDate" type="date" class="border p-3 rounded-lg" required><select id="appSlot" class="border p-3 rounded-lg"><option>10:00 AM</option><option>11:00 AM</option><option>02:00 PM</option><option>04:00 PM</option></select><button class="bg-pink-600 text-white rounded-lg">Book</button></form><div id="appList" class="mt-4 space-y-2"></div></div></section>
+
+<div class="max-w-6xl mx-auto p-4">
+<div id="page-home"><div class="bg-white rounded-[20px] p-5 mt-3 border-l-8 border-[#8B1E3F] shadow"><h2 class="font-bold text-[#8B1E3F] text-sm">AYUSH CARE - Patient + Doctor Portal</h2><p class="text-xs text-gray-600 mt-2">Login as <b>Patient</b> for Quiz & Appointments, <b>Doctor</b> for Patient Cases.</p><div class="mt-3 flex gap-2"><button onclick="showPage('quiz')" class="bg-[#8B1E3F] text-white px-4 py-2 rounded-full text-xs">Patient: Start Quiz</button><button onclick="openLogin()" class="bg-pink-100 text-[#8B1E3F] px-4 py-2 rounded-full text-xs">Login First</button></div></div>
+<div id="roleInfo" class="hidden mt-4 bg-white p-4 rounded-2xl shadow"></div></div>
+
+<div id="page-quiz" class="hidden"><div class="bg-white rounded-2xl p-5 shadow mt-3"><div class="flex justify-between text-xs"><span id="qCount">Q 1/20</span><span id="qPer" class="font-bold text-[#8B1E3F]">5%</span></div><div class="w-full bg-gray-200 h-2 rounded mt-2"><div id="qBar" class="bg-[#8B1E3F] h-2 rounded" style="width:5%"></div></div><h2 id="qTitle" class="font-bold mt-4 text-sm"></h2><div id="qOptions" class="mt-3 grid gap-2"></div></div></div>
+
+<div id="page-result" class="hidden"><div class="bg-white rounded-2xl p-5 shadow mt-3 text-center"><h2 class="font-bold">Result</h2><h1 id="resDosha" class="text-3xl font-bold text-[#8B1E3F] mt-2"></h1><p id="resText" class="text-xs text-gray-600 mt-2"></p><div class="grid grid-cols-3 gap-2 mt-4"><div class="bg-blue-50 p-2 rounded-xl text-xs">VATA<br><b id="sVata"></b></div><div class="bg-red-50 p-2 rounded-xl text-xs">PITTA<br><b id="sPitta"></b></div><div class="bg-green-50 p-2 rounded-xl text-xs">KAPHA<br><b id="sKapha"></b></div></div><button onclick="showPage('doctors')" class="mt-4 bg-[#8B1E3F] text-white px-6 py-2 rounded-full text-xs">Find Doctor</button></div></div>
+
+<div id="page-doctors" class="hidden"><div class="grid md:grid-cols-2 gap-3 mt-3" id="docList"></div></div>
+
+<div id="page-cases" class="hidden"><div class="bg-white rounded-2xl p-5 shadow mt-3"><h3 id="casesTitle" class="font-bold text-sm"></h3><div id="caseList" class="mt-3"></div></div></div>
 </div>
+
+<div id="loginModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[100]"><div class="bg-white rounded-2xl p-6 w-full max-w-sm"><h3 class="font-bold">Login</h3><input id="uName" placeholder="Name" class="w-full border p-3 rounded-xl mt-3 text-sm"><select id="uRole" class="w-full border p-3 rounded-xl mt-3 text-sm"><option value="Patient">Patient</option><option value="Doctor">Doctor</option></select><button onclick="doLogin()" class="w-full bg-[#8B1E3F] text-white p-3 rounded-xl mt-3 text-sm">Continue</button><button onclick="closeLogin()" class="w-full mt-2 text-xs">Cancel</button></div></div>
+
 <script>
-const questions=[["Body Frame","Thin","Medium","Large"],["Skin","Dry rough","Warm oily","Thick oily"],["Hair","Dry frizzy","Fine gray","Thick wavy"],["Appetite","Irregular","Strong sharp","Slow steady"],["Sleep","Light","Moderate","Deep"],["Stress","Anxious","Irritable","Calm"],["Memory","Quick forget","Sharp","Slow never forget"],["Walk","Fast","Medium","Slow"],["Weather","Loves warm","Loves cool","Loves dry"],["Speech","Fast lot","Sharp","Slow sweet"],["Mood","Changes","Intense","Stable"],["Energy","Bursts","Focused","Steady"],["Decision","Indecisive","Decisive","Slow"],["Temp","Cold hands","Warm sweaty","Cool"],["Eyes","Small dry","Sharp","Large calm"],["Dreams","Fearful flying","Fiery","Watery"],["Friends","Many quick","Selective leader","Loyal few"],["Money","Spends quick","Luxury planned","Saves"],["Digestion","Gas bloating","Acidity","Heavy"],["Hunger","Can miss","Hangry fast","Can fast"]];const doshas=["Vata","Pitta","Kapha"];const doctors=[{n:"Dr. Ananya Sharma",t:"Ayurveda",loc:"Agra, UP",r:4.9,s:"Panchakarma & Prakriti"},{n:"Dr. Rajesh Kumar",t:"Yoga",loc:"Delhi",r:4.8,s:"Therapeutic Yoga"},{n:"Dr. Fatima Sheikh",t:"Unani",loc:"Lucknow",r:4.7,s:"Unani Medicine"},{n:"
+const Qs=[["Body frame?","Thin, lean","Medium","Large"],["Skin?","Dry, rough","Warm, oily","Thick, oily"],["Appetite?","Irregular","Strong","Steady"],["Sleep?","Less, light","Moderate","Deep"],["Mood?","Anxious","Angry","Calm"],["Walk?","Fast","Medium","Slow"],["Weather like?","Warm","Cool","Warm dry"],["Energy?","Burst","Moderate","Steady"],["Mind?","Restless","Focused","Calm"],["Memory?","Short","Sharp","Long"],["Speech?","Fast","Sharp","Slow"],["Decision?","Quick change","Quick firm","Slow"],["Sweat?","Less","More","Moderate"],["Thirst?","Less","More","Moderate"],["Digestion?","Gas","Acidity","Slow"],["Hair?","Dry","Fine","Thick"],["Friends?","Many short","Selective","Few long"],["Money?","Spends fast","Luxury","Saves"],["Stress?","Fear","Anger","Calm"],["Illness?","Pain","Inflammation","Congestion"]];
+let cur=0,scores={Vata:0,Pitta:0,Kapha:0};
+let user=JSON.parse(localStorage.getItem('ayush_user')||'null');
+let doctors=[{name:"Dr. Anjali Sharma",deg:"BAMS, MD",spec:"Panchakarma",fee:"₹500"},{name:"Dr. Rajesh Kumar",deg:"BAMS",spec:"Kayachikitsa",fee:"₹400"},{name:"Dr. Priya Verma",deg:"MD",spec:"Stree Roga",fee:"₹600"},{name:"Dr. Amit Singh",deg:"BAMS MS",spec:"Shalya",fee:"₹550"},{name:"Dr. Sunita Patel",deg:"BAMS",spec:"Bal Roga",fee:"₹450"},{name:"Dr. Vikram Rao",deg:"MD PhD",spec:"Dravyaguna",fee:"₹700"}];
+
+function updateAuth(){
+ if(!user){document.getElementById('authBtn').innerText='Login'; document.getElementById('navCases').innerText='My Cases'; return;}
+ document.getElementById('authBtn').innerText=user.name+' ('+user.role+') - Logout';
+ document.getElementById('authBtn').onclick=()=>{localStorage.removeItem('ayush_user');location.reload()};
+ document.getElementById('navCases').innerText=user.role=='Doctor'?'All Patients':'My Cases';
+ let info=document.getElementById('roleInfo'); info.classList.remove('hidden');
+ if(user.role=='Patient'){
+  let cases=JSON.parse(localStorage.getItem('ayush_cases')||'[]').filter(c=>c.name==user.name);
+  let last=cases[0];
+  info.innerHTML=`<h3 class="font-bold text-sm">Patient Dashboard - ${user.name}</h3><div class="grid grid-cols-2 gap-2 mt-3"><div class="bg-pink-50 p-3 rounded-xl text-xs">Prakriti<br><b>${last?last.dosha:'Not tested'}</b></div><div class="bg-blue-50 p-3 rounded-xl text-xs">My Cases<br><b>${cases.length}</b></div></div>`;
+ } else {
+  let cases=JSON.parse(localStorage.getItem('ayush_cases')||'[]');
+  info.innerHTML=`<h3 class="font-bold text-sm">Doctor Dashboard - ${user.name}</h3><div class="grid grid-cols-2 gap-2 mt-3"><div class="bg-green-50 p-3 rounded-xl text-xs">Total Patients<br><b>${cases.length}</b></div><div class="bg-yellow-50 p-3 rounded-xl text-xs">Today<br><b>${cases.filter(c=>c.date.includes(new Date().toLocaleDateString())).length}</b></div></div><p class="text-[10px] text-gray-500 mt-2">All patient prakriti results will appear in Cases tab.</p>`;
+ }
+}
+function openLogin(){document.getElementById('loginModal').classList.remove('hidden')}
+function closeLogin(){document.getElementById('loginModal').classList.add('hidden')}
+function doLogin(){let n=document.getElementById('uName').value.trim(); if(!n) return alert("Name likh"); let r=document.getElementById('uRole').value; user={name:n,role:r}; localStorage.setItem('ayush_user',JSON.stringify(user)); closeLogin(); updateAuth(); showPage('home');}
+function showPage(p){document.querySelectorAll('[id^=page-]').forEach(e=>e.classList.add('hidden')); document.getElementById('page-'+p).classList.remove('hidden'); if(p=='quiz') startQuiz(); if(p=='doctors') renderDocs(); if(p=='cases') renderCases();}
+function startQuiz(){if(!user){openLogin();return;} if(user.role=='Doctor') return alert("Doctor cannot give quiz. Login as Patient."); cur=0;scores={Vata:0,Pitta:0,Kapha:0};showQ();}
+function showQ(){let q=Qs[cur];document.getElementById('qCount').innerText=`Q ${cur+1}/20`;document.getElementById('qPer').innerText=Math.round((cur+1)/20*100)+'%';document.getElementById('qBar').style.width=(cur+1)/20*100+'%';document.getElementById('qTitle').innerText=q[0];let box=document.getElementById('qOptions');box.innerHTML='';[{l:q[1],t:'Vata'},{l:q[2],t:'Pitta'},{l:q[3],t:'Kapha'}].forEach(o=>{box.innerHTML+=`<button onclick="ans('${o.t}')" class="text-left p-3 border rounded-xl text-xs hover:bg-pink-50 flex justify-between"><span>${o.l}</span><span class="text-[9px] bg-gray-100 px-2 rounded">${o.t}</span></button>`});}
+function ans(t){scores[t]++;cur++;if(cur<20)showQ();else showResult();}
+function showResult(){document.getElementById('page-quiz').classList.add('hidden');document.getElementById('page-result').classList.remove('hidden');let dom=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);document.getElementById('resDosha').innerText=dom;document.getElementById('resText').innerText=`Vata ${scores.Vata}, Pitta ${scores.Pitta}, Kapha ${scores.Kapha}`;document.getElementById('sVata').innerText=Math.round(scores.Vata/20*100)+'%';document.getElementById('sPitta').innerText=Math.round(scores.Pitta/20*100)+'%';document.getElementById('sKapha').innerText=Math.round(scores.Kapha/20*100)+'%';let cases=JSON.parse(localStorage.getItem('ayush_cases')||'[]');cases.unshift({dosha:dom,scores,date:new Date().toLocaleString(),name:user.name});localStorage.setItem('ayush_cases',JSON.stringify(cases));let appts=JSON.parse(localStorage.getItem('ayush_appts')||'[]');localStorage.setItem('ayush_appts',JSON.stringify(appts));updateAuth();}
+function renderDocs(){let h='';doctors.forEach(d=>{h+=`<div class="bg-white p-4 rounded-2xl shadow"><h4 class="font-bold text-sm">${d.name}</h4><p class="text-[11px] text-gray-500">${d.deg} • ${d.spec} • ${d.fee}</p><button onclick="book('${d.name}')" class="mt-2 w-full bg-[#8B1E3F] text-white py-2 rounded-full text-xs">Book Appointment</button></div>`});document.getElementById('docList').innerHTML=h;}
+function book(n){if(!user)return openLogin();if(user.role=='Doctor')return alert("Doctor cannot book");let appts=JSON.parse(localStorage.getItem('ayush_appts')||'[]');appts.unshift({doctor:n,patient:user.name,date:new Date().toLocaleString()});localStorage.setItem('ayush_appts',JSON.stringify(appts));alert("Booked with "+n);}
+function renderCases(){
+ let cases=JSON.parse(localStorage.getItem('ayush_cases')||'[]');
+ let appts=JSON.parse(localStorage.getItem('ayush_appts')||'[]');
+ if(user.role=='Doctor'){
+  document.getElementById('casesTitle').innerText='All Patients - Doctor View ('+cases.length+')';
+  if(!cases.length) document.getElementById('caseList').innerHTML='<p class="text-xs text-gray-500">No patients yet</p>';
+  else document.getElementById('caseList').innerHTML=cases.map(c=>`<div class="border p-3 rounded-xl mb-2 text-xs"><b>${c.name}</b> - ${c.dosha} <span class="float-right">${c.date}</span><br>V${c.scores.Vata} P${c.scores.Pitta} K${c.scores.Kapha}<br><button onclick="alert('Prescription for ${c.name}: Triphala, Ashwagandha')" class="mt-1 bg-green-100 px-2 py-1 rounded text-[10px]">Give Prescription</button></div>`).join('')+`<h4 class="font-bold mt-4 text-xs">Appointments (${appts.length})</h4>`+appts.map(a=>`<div class="text-xs border-b py-1">${a.patient} -> ${a.doctor} - ${a.date}</div>`).join('');
+ } else {
+  document.getElementById('casesTitle').innerText='My Cases - Patient View';
+  let my=cases.filter(c=>c.name==user.name); let myAp=appts.filter(a=>a.patient==user.name);
+  if(!my.length) document.getElementById('caseList').innerHTML='<p class="text-xs text-gray-500">No cases. Do quiz.</p>';
+  else document.getElementById('caseList').innerHTML=my.map(c=>`<div class="border p-3 rounded-xl mb-2 text-xs"><b>${c.dosha}</b> - ${c.date}<br>V${c.scores.Vata} P${c.scores.Pitta} K${c.scores.Kapha}</div>`).join('')+`<h4 class="font-bold mt-3 text-xs">My Appointments</h4>`+myAp.map(a=>`<div class="text-xs border-b py-1">${a.doctor} - ${a.date}</div>`).join('');
+ }
+}
+updateAuth();
+</script></body></html>
