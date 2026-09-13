@@ -1,93 +1,304 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CODERX - TECHNICAL APPROACH | SIH 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
-:root{--green:#1a5c3a;--dark:#0f3d22;--light:#e6f4ea;--light2:#f0faf3;--accent:#2e8b57;--bg:#f7fdf8}
-body{background:var(--bg);color:#1a2e1a}
-.hidden{display:none!important}
-.topbar{background:var(--dark);color:white;padding:8px 18px;display:flex;justify-content:space-between;font-size:11px;flex-wrap:wrap}
-.login-wrap{min-height:100vh;background:linear-gradient(135deg,var(--dark),var(--green),var(--accent));display:flex;align-items:center;justify-content:center;padding:20px}
-.login-card{background:white;border-radius:22px;width:100%;max-width:520px;padding:32px;box-shadow:0 25px 70px rgba(0,0,0,.35)}
-.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
-.role{border:2px solid #d1e7d6;border-radius:14px;padding:14px 6px;text-align:center;cursor:pointer;background:#fcfffe}
-.role.active{border-color:var(--green);background:var(--light)}
-.inp{width:100%;padding:12px 14px;border:2px solid #d1e7d6;border-radius:10px;margin-top:6px;outline:none;font-size:13px}
-.inp:focus{border-color:var(--green)}
-.btn{width:100%;padding:13px;background:var(--green);color:white;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:14px}
-.btn:hover{background:var(--dark)}
-.chip{display:inline-block;background:var(--light);color:var(--dark);padding:5px 10px;border-radius:20px;font-size:10px;font-weight:600;margin:2px;border:1px solid #b7d9c0}
-.app{display:flex;min-height:100vh}
-.sidebar{width:285px;background:white;border-right:1px solid #d1e7d6;padding:18px;display:flex;flex-direction:column}
-.m-item{padding:11px 13px;border-radius:10px;cursor:pointer;font-size:12.5px;color:#3a5a40;margin-bottom:5px;display:flex;gap:9px;align-items:center}
-.m-item.active,.m-item:hover{background:var(--green);color:white}
-.main{flex:1;padding:22px;overflow-y:auto}
-.card{background:white;border-radius:16px;padding:18px;box-shadow:0 3px 14px rgba(0,0,0,.05);border:1px solid #e3f0e6;margin-bottom:14px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.feature-box{border:1.5px dashed #b7d9c0;border-radius:12px;padding:12px;background:#f0faf3}
-.feature-box b{font-size:12px;color:var(--dark)}.feature-box ul{font-size:11px;color:#3a5a40;margin:6px 0 0 14px;line-height:1.6}
-.voice-btn{background:#fff7d6;border:1px solid #facc15;padding:7px 12px;border-radius:20px;font-size:11px;cursor:pointer;font-weight:600}
-.voice-btn.live{background:#dc2626;color:white}
-table{width:100%;border-collapse:collapse;font-size:12px}th{background:var(--light);padding:9px;text-align:left;color:var(--dark)}td{padding:9px;border-bottom:1px solid #eef6ef}
-.offline-flow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:10px;text-align:center}
-.offline-flow .step{background:white;border:1.5px solid var(--green);border-radius:12px;padding:10px;width:110px}
-@media(max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.app{flex-direction:column}.sidebar{width:100%}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakriti Health Portal & AI Assistant</title>
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --accent-gold: #fbc02d;
+            --light-bg: #f4f7f6;
+            --dark-text: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+        }
+
+        header {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .auth-buttons button {
+            background: var(--accent-gold);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        h2 { color: var(--primary-green); border-bottom: 2px solid #eee; padding-bottom: 8px;}
+
+        /* Quiz Styles */
+        .quiz-option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* ABHA Section */
+        .abha-card {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        /* Scanner */
+        .scanner-zone {
+            border: 2px dashed var(--primary-green);
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            background: #fafafa;
+            cursor: pointer;
+        }
+
+        /* AI & Chatbot UI */
+        .chat-box {
+            height: 250px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            background: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .chat-input-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .btn-mic {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+
+        .btn-send {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<div class="topbar"><span><b>CODERX</b> | TECHNICAL APPROACH - Smart • Secure • Integrated • AYUSH Centric | SIH 2026</span><span id="netStatus">🟢 Online - Secure DB | Fast Access</span></div>
 
-<div id="loginPage" class="login-wrap">
-<div class="login-card">
-<div style="display:flex;justify-content:space-between"><div style="border:2px solid #1a5c3a;border-radius:20px;padding:6px 14px;font-weight:800;color:#1a5c3a">CODERX</div><div style="font-size:9px;text-align:right">SMART INDIA<br><b>HACKATHON 2026</b></div></div>
-<h2 style="text-align:center;color:#0f3d22;margin-top:14px">TECHNICAL APPROACH</h2>
-<p style="text-align:center;color:#1a5c3a;font-size:11px;font-weight:600">Smart • Secure • Integrated • AYUSH Centric</p>
-<div style="background:#e6f4ea;border:1px solid #b7d9c0;border-radius:12px;padding:10px;margin:14px 0"><div style="font-size:12px;font-weight:700;color:#0f3d22">🔓 OPEN LOGIN - Koi bhi login kar sakta hai</div><div style="font-size:10px;color:#3a5a40">Patient / Doctor / Admin - Koi bhi ID/Password daalo, andar!</div></div>
-<div class="role-grid">
-<div class="role active" onclick="setRole('patient',this)">👤<br><b style="font-size:12px">Patient Login</b></div>
-<div class="role" onclick="setRole('doctor',this)">👨‍⚕️<br><b style="font-size:12px">Doctor Login</b></div>
-<div class="role" onclick="setRole('admin',this)">⚙️<br><b style="font-size:12px">Admin Login</b></div>
-</div>
-<label style="font-size:11px;font-weight:600">User ID (kuch bhi)</label><input id="uid" class="inp" placeholder="e.g. riya123 / dr.arun">
-<label style="font-size:11px;font-weight:600;margin-top:8px;display:block">Password (kuch bhi)</label><input id="upass" class="inp" type="password" placeholder="1234">
-<label style="font-size:11px;font-weight:600;margin-top:8px;display:block">ABHA Health ID (Optional)</label><input id="abhaId" class="inp" placeholder="91-XXXX-XXXX-XXXX">
-<button class="btn" onclick="openLogin()">🚀 Login to CODERX - Open Access</button>
-<button class="btn" style="margin-top:8px;background:white;color:#1a5c3a;border:2px solid #1a5c3a" onclick="openLogin()">👁️ Guest Login</button>
-<div style="margin-top:12px"><span class="chip">01 Auth ✓</span><span class="chip">02 Frontend ✓</span><span class="chip">03 API ✓</span><span class="chip">04 MySQL ✓</span><span class="chip">05 AI ✓</span><span class="chip">06 AYUSH ✓</span><span class="chip">07 ABHA ✓</span><span class="chip">08 Service ✓</span><span class="chip">09 Offline ✓</span><span class="chip">10 Stack ✓</span></div>
-</div>
-</div>
+    <header>
+        <h1>आयुर्वेद प्रकृति & ABHA पोर्टल</h1>
+        <div class="auth-buttons">
+            <button onclick="switchRole('Patient')">Patient Login</button>
+            <button onclick="switchRole('Doctor')">Doctor Login</button>
+        </div>
+    </header>
 
-<div id="app" class="app hidden">
-<div class="sidebar">
-<div style="font-weight:800;color:#0f3d22;font-size:18px">🌿 CODERX<br><small style="font-size:10px;color:#5a7a5a">Green & White | SIH26047</small></div>
-<div id="roleBadge" style="margin-top:10px;background:#e6f4ea;color:#0f3d22;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;width:fit-content">PATIENT MODE</div>
-<div style="margin-top:18px;display:flex;flex-direction:column">
-<div class="m-item active" onclick="tab('dash',this)">📊 01-04 Core Layers</div>
-<div class="m-item" onclick="tab('ai',this)">🤖 05 AI Case Taking</div>
-<div class="m-item" onclick="tab('ayush',this)">🍃 06 AYUSH Intelligence</div>
-<div class="m-item" onclick="tab('abha',this)">🪪 07 ABHA Integration</div>
-<div class="m-item" onclick="tab('service',this)">👥 08 Doctor-Patient</div>
-<div class="m-item" onclick="tab('offline',this)">📡 09 Offline-First</div>
-<div class="m-item" onclick="tab('tech',this)">💻 10 Tech Stack</div>
-<div class="m-item" onclick="tab('compare',this)">⚖️ 11 Comparison</div>
-<div class="m-item" onclick="logout()" style="color:#b91c1c;margin-top:10px">🚪 Logout</div>
-</div>
-</div>
+    <div class="container">
+        <!-- Main Dashboard Column -->
+        <main>
+            <!-- 1. ABHA ID Records Section -->
+            <section class="card abha-card">
+                <h3>राष्ट्रीय स्वास्थ्य प्राधिकरण (ABHA ID)</h3>
+                <p><strong>ABHA Number:</strong> 91-4829-1029-4412</p>
+                <input type="text" id="abhaInput" placeholder="Enter ABHA ID to sync records..." style="width: 70%; padding: 8px;">
+                <button onclick="syncAbhaRecords()" style="padding: 8px 15px; background: var(--accent-gold); border:none; font-weight:bold; cursor:pointer;">Govt Sync</button>
+                <div id="abhaStatus" style="margin-top: 10px; font-size: 0.9em; color: #ffeb3b;"></div>
+            </section>
 
-<div class="main">
-<div id="dash"><h2 style="color:#0f3d22">CODERX - Core Layers (01-04)</h2><div class="grid2" style="margin-top:12px"><div class="feature-box"><b>01 USER & AUTH LAYER</b><ul><li>Patient/Doctor/Admin Login</li><li>8-Layer Security</li><li>Role-Based Access</li><li>Encrypted Sessions</li><li>Data Protection & Privacy</li><li>OTP / 2FA Verification</li></ul></div><div class="feature-box"><b>02 FRONTEND LAYER</b><ul><li>HTML+CSS+JS (Web) + Flutter</li><li>Voice Typing (Speech to Text)</li><li>Responsive & User-Friendly UI</li><li>Multilingual Support</li><li>Modern | Fast | Cross-Platform</li></ul></div><div class="feature-box"><b>03 API & SECURITY GATEWAY</b><ul><li>PHP REST APIs</li><li>Authentication & Authorization</li><li>Input Validation</li><li>Role-based API Access</li><li>Secure HTTPS + Audit Logging</li></ul></div><div class="feature-box"><b>04 BACKEND & DATA - MySQL</b><ul><li>Patient Profile Management</li><li>Doctor Profile Management</li><li>Case History Storage</li><li>Appointment & Prescription</li><li>Structured Medical Database</li></ul></div></div><div class="grid3" style="margin-top:12px"><div class="card"><h3 style="color:#1a5c3a;font-size:22px">1,248</h3><small>Total Patients</small></div><div class="card"><h3 style="color:#1a5c3a;font-size:22px">24</h3><small>Today Cases</small></div><div class="card"><h3 style="color:#1a5c3a;font-size:22px">89%</h3><small>AI Accuracy</small></div></div></div>
+            <!-- 2. Prakriti Quiz Section -->
+            <section class="card">
+                <h2>आपकी प्रकृति (Ayurvedic Dosha Assessment)</h2>
+                <div id="quiz-container">
+                    <p id="question">1. आपकी त्वचा की प्रकृति कैसी है?</p>
+                    <label class="quiz-option"><input type="radio" name="dosha" value="Vata"> रुखी, ठंडी और खुरदरी (Vata)</label>
+                    <label class="quiz-option"><input type="radio" name="dosha" value="Pitta"> संवेदनशील, गर्म और लालिमायुक्त (Pitta)</label>
+                    <label class="quiz-option"><input type="radio" name="dosha" value="Kapha"> चिकनी, तैलीय और नरम (Kapha)</label>
+                    <button onclick="calculateDosha()" style="margin-top: 10px; padding: 10px 20px; background: var(--primary-green); color: white; border: none; border-radius: 6px; cursor: pointer;">प्रकृति जांचें</button>
+                </div>
+                <div id="doshaResult" style="margin-top: 15px; font-weight: bold;"></div>
+            </section>
 
-<div id="ai" class="hidden"><h2>05 AI-ASSISTED CASE TAKING</h2><div class="card" style="margin-top:12px"><button class="voice-btn" onclick="startVoice('complaint')">🎙️ Voice → Text</button> <button class="voice-btn" onclick="startVoice('history')">🎙️ Symptoms</button> <button class="voice-btn" style="background:#e6f4ea" onclick="doSummarize()">✨ Intelligent Summarization</button><div class="grid2" style="margin-top:10px"><textarea id="complaint" class="inp" rows="3" placeholder="Chief complaint boliye..."></textarea><textarea id="history" class="inp" rows="3" placeholder="History..."></textarea></div><div id="aiSum" class="hidden" style="margin-top:10px;background:#e6f4ea;padding:10px;border-radius:10px;font-size:11px"></div><button class="btn" onclick="saveCase()">💾 Save Case History</button></div></div>
+            <!-- 3. Medical Report Scanner -->
+            <section class="card">
+                <h2>स्मार्ट रिपोर्ट स्कैनर (AI OCR Upload)</h2>
+                <div class="scanner-zone" onclick="document.getElementById('fileScan').click()">
+                    📄 यहाँ रिपोर्ट PDF/Photo अपलोड करें या स्कैन करें
+                    <input type="file" id="fileScan" style="display:none" onchange="processScan(this)">
+                </div>
+                <p id="scanStatus" style="color: green; font-weight: bold;"></p>
+            </section>
+        </main>
 
-<div id="ayush" class="hidden"><h2>06 AYUSH & CLINICAL INTELLIGENCE</h2><div class="grid2" style="margin-top:12px"><div class="card"><b>🌿 AYUSH Medical System</b><ul style="font-size:11px;margin:8px 0 0 14px;line-height:1.8"><li>Prakriti Assessment</li><li>Dosha Analysis (Vata | Pitta | Kapha)</li><li>Ayurvedic Case-taking Parameters</li><li>AYUSH-oriented Patient Profile</li><li>Traditional Medicine History</li><li>Modern + AYUSH Integration</li></ul><select id="prak1" class="inp"><option>Thin / Vata</option><option>Medium / Pitta</option><option>Heavy / Kapha</option></select><button class="btn" style="padding:8px;margin-top:8px" onclick="calcPrakriti()">Calculate Prakriti</button><div id="prakRes" style="margin-top:6px;font-weight:700;color:#1a5c3a;font-size:12px"></div></div><div class="card"><b>🔥 Dosha Analysis</b><div style="font-size:11px;margin-top:8px">Vata <span id="vV">40%</span><input type="range" id="vata" value="40" min="0" max="100" oninput="updDosha()" style="width:100%">Pitta <span id="pV">35%</span><input type="range" id="pitta" value="35" min="0" max="100" oninput="updDosha()" style="width:100%">Kapha <span id="kV">25%</span><input type="range" id="kapha" value="25" min="0" max="100" oninput="updDosha()" style="width:100%"><div id="doshaDom" style="background:#fef9c3;padding:6px;border-radius:8px;margin-top:6px">Dominant: Vata-Pitta</div></div><div style="margin-top:10px"><span class="chip">Nadi Pariksha</span><span class="chip">Agni</span><span class="chip">Mala</span><span class="chip">Jihva</span></div></div></div></div>
+        <!-- Sidebar: AI Doctor Assistant & Tele-Consult -->
+        <aside>
+            <!-- Current Active Role Display -->
+            <div class="card">
+                <p>वर्तमान लॉगिन: <strong id="userRole">Patient Mode</strong></p>
+            </div>
 
-<div id="abha" class="hidden"><h2>07 ABHA / DIGITAL HEALTH</h2><div class="card" style="margin-top:12px"><div class="grid2"><div><input id="abhaInput" class="inp" placeholder="91-XXXX-XXXX-XXXX"><button class="btn" style="padding:10px;margin-top:8px" onclick="linkABHA()">🔗 Link ABHA & Fetch</button><div id="abhaBox" class="hidden" style="margin-top:10px;background:#f0f9ff;padding:10px;border-radius:10px;font-size:11px;line-height:1.6">✓ ABHA-based Patient ID<br>✓ Consent-based Access<br>✓ View Health Records<br>✓ Previous Medical History<br>✓ Avoids Repeated Entry<br>✓ Secure Health Data Exchange<br><br><span style="background:#1a5c3a;color:white;padding:4px 10px;border-radius:20px;font-size:10px">Connected | Consent-Based | Secure</span></div></div><div class="feature-box"><b>ABHA Health ID</b><ul><li>Consent-based Access</li><li>View Available Records</li><li>Previous History</li><li>Avoids Repeated Entry</li><li>Secure Exchange</li></ul></div></div></div></div>
+            <!-- 4. AI Assistant & Appointment System -->
+            <div class="card">
+                <h2>AI प्रकृति असिस्टेंट</h2>
+                <div class="chat-box" id="chatBox">
+                    <p><strong>AI:</strong> नमस्ते! मैं आपकी सेहत की देखभाल के लिए उपलब्ध हूँ। क्या आप डॉक्टर से अपॉइंटमेंट बुक करना चाहते हैं?</p>
+                </div>
+                <div class="chat-input-group">
+                    <input type="text" id="userInput" placeholder="यहाँ लिखें या बोलें...">
+                    <button class="btn-mic" onclick="startVoiceRecognition()" title="Voice Typing">🎙️</button>
+                    <button class="btn-send" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
 
-<div id="service" class="hidden"><h2>08 DOCTOR-PATIENT SERVICE LAYER</h2><div class="grid2" style="margin-top:12px"><div class="card"><b>🧑 PATIENT JOURNEY</b><div style="font-size:11px;line-height:2;margin-top:6px">✓ Search Doctor <input id="searchDoc" class="inp" style="display:inline;width:60%;padding:6px" placeholder="Search"><div id="docList" style="margin-top:8px"><div style="border:1px solid #d1e7d6;padding:8px;border-radius:8px">👨‍⚕️ Dr. Arun - Available <button class="btn" style="width:auto;padding:4px 10px;font-size:10px" onclick="bookApt('Dr. Arun')">Book</button></div></div>✓ View Availability<br>✓ Book Appointment<br>✓ Consultation<br>✓ Prescription / Follow-up<br>✓ AI Assistant<br>✓ Medical Records</div><div id="aptMsg" style="color:#1a5c3a;font-size:11px;margin-top:6px;font-weight:600"></div></div><div class="card"><b>👨‍⚕️ DOCTOR DASHBOARD</b><div style="font-size:11px;line-height:2">✓ Patient Queue (Live: <span id="qCount">3</span>)<br>✓ Case History<br>✓ Consultation<br>✓ Prescription<br>✓ Follow-up Management<br>✓ Patient Records<br>✓ AI Insights</div></div></div></div>
+            <!-- Direct Doctor Connect -->
+            <div class="card">
+                <h2>डॉक्टर कनेक्ट (Telehealth)</h2>
+                <button onclick="startVideoCall()" style="width: 100%; padding: 12px; background: #0288d1; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Direct Video Consultation</button>
+            </div>
+        </aside>
+    </div>
 
-<div id="offline" class="hidden"><h2>09 OFFLINE-FIRST ARCHITECTURE</h2><div class="card" style="margin-top:12px"><div class="offline-flow"><div class="step">📶<br><b>No Internet (Offline)</b><br><small>Case Entry & Voice</small></div><div>→</div><div class="step">💾<br><b>Local Encrypted Storage</b><br><small>Save Secure</small></div><div>→</div><div class="step">☁️<br><b>Network Available</b><br><small>Sync Secure</small></div><div>→</div><div class="step">🗄️<br><b>Central Database</b><br><small>Updated Real-time</small></div></div><div style="margin-top:12px;background:#0f3d22;color:white;padding:10px;border-radius:10px;font-size:10px;text-align:center">Designed for low-connectivity healthcare environments with Offline-First Case Taking & Secure Synchronization.</div></div></div>
+    <script>
+        // 1. Role Switcher
+        function switchRole(role) {
+            document.getElementById('userRole').innerText = role + " Mode";
+            alert("Switched to " + role + " Dashboard!");
+        }
 
-<div id="tech" class="hidden"><h2>10 TECHNOLOGY STACK</h2><div class="card" style="margin-top:12px"><div class="grid4"><div style="border:2px solid #1a5c3a;border-radius:12px;padding:12px;text-align:center"><b>HTML</b><br><small>Frontend</small></div><div style="border:2px solid #1a5c3a;border-radius:12px;padding:12px;text-align:center"><b>CSS</b><br><small>Frontend</small></div><div style="border:2px solid #1a5c3a;border-radius:12px;padding:12px;text-align:center"><b>JS</b><br><small>Frontend</small></div><div style="border:2px solid #1a5c3a;border-radius:12px;padding:12px;text-align:center"><b>Flutter</b><br><small>Mobile</small></div><div style="border:2px solid #1a5c3a;border-radius:12px;padding:12px;text-align:center"><b>PHP</b><br><small>REST APIs</small></div><div style="border:2px solid #1a5c3a;border-radius:12px;padding:12px;text-align:center"><b>MySQL</b><br><small>Database</small></div><div style="border:2px solid #1a5c3a;border-radius:12px;padding:12px;text-align
+        // 2. Prakriti / Dosha Calculator Logic
+        function calculateDosha() {
+            const selected = document.querySelector('input[name="dosha"]:checked');
+            if (selected) {
+                document.getElementById('doshaResult').innerText = "आपकी प्राथमिक प्रकृति: " + selected.value + " (वात/पित्त/कफ बैलेंस देखें)";
+            } else {
+                alert("कृपया कोई एक विकल्प चुनें!");
+            }
+        }
+
+        // 3. ABHA ID Direct Records Fetch Mock
+        function syncAbhaRecords() {
+            const abhaId = document.getElementById('abhaInput').value;
+            const status = document.getElementById('abhaStatus');
+            if(!abhaId) {
+                alert("कृपया वैलिड ABHA ID दर्ज करें!");
+                return;
+            }
+            status.innerText = "सरकारी स्वास्थ्य पोर्टल से कनेक्ट हो रहा है...";
+            setTimeout(() => {
+                status.innerText = "✓ 5 पुरानी मेडिकल रिपोर्ट्स सफलतापूर्वक ABHA प्रोफाइल से सिंक हो गईं!";
+            }, 2000);
+        }
+
+        // 4. Report Scanner Functionality
+        function processScan(input) {
+            const status = document.getElementById('scanStatus');
+            if (input.files && input.files[0]) {
+                status.innerText = "स्कैनिंग जारी है: " + input.files[0].name;
+                setTimeout(() => {
+                    status.innerText = "✓ रिपोर्ट स्कैन पूर्ण! डेटा ABHA प्रोफाइल में सुरक्षित किया गया।";
+                }, 2000);
+            }
+        }
+
+        // 5. Voice Typing Integration (Web Speech API)
+        function startVoiceRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                const recognition = new SpeechRecognition();
+                recognition.lang = 'hi-IN'; // Hindi Language Support
+
+                recognition.onstart = function() {
+                    document.getElementById('userInput').placeholder = "सुन रहा हूँ, बोलिए...";
+                };
+
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('userInput').value = transcript;
+                };
+
+                recognition.start();
+            } else {
+                alert("आपके ब्राउज़र में वॉइस टाइपिंग सपोर्ट उपलब्ध नहीं है।");
+            }
+        }
+
+        // 6. AI Assistant & Instant Doctor Appointment Logic
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const chatBox = document.getElementById('chatBox');
+            const text = input.value.trim();
+
+            if (text === "") return;
+
+            // Display User Message
+            chatBox.innerHTML += `<p><strong>आप:</strong> ${text}</p>`;
+            input.value = "";
+
+            // Auto Scroll
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // AI Smart Response Logic
+            setTimeout(() => {
+                let aiReply = "मैं समझ गया। आपकी हेल्थ प्रोफाइल के आधार पर क्या मैं आयुर्वेद विशेषज्ञ से अपॉइंटमेंट बुक कर दूँ?";
+                
+                if (text.includes("अपॉइंटमेंट") || text.includes("doctor") || text.includes("डॉक्टर") || text.includes("बुक")) {
+                    aiReply = "✅ आपका अपॉइंटमेंट कल सुबह 10:30 बजे डॉ. शर्मा (आयुर्वेदिक विशेषज्ञ) के साथ सफलतापूर्वक बुक हो गया है! ABHA पोर्टल पर डिटेल्स भेज दी गई हैं।";
+                }
+
+                chatBox.innerHTML += `<p><strong>AI:</strong> ${aiReply}</p>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 1000);
+        }
+
+        // 7. Video Call Trigger
+        function startVideoCall() {
+            alert("डॉक्टर से डायरेक्ट वीडियो चैट रूम शुरू हो रहा है... कृपया कैमरा और माइक की अनुमति दें।");
+        }
+    </script>
+</body>
+</html>
