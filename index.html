@@ -1,76 +1,175 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AYUSH CARE - Patient + Doctor</title><script src="https://cdn.tailwindcss.com"></script><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"><style>body{font-family:Poppins,sans-serif}</style></head><body class="bg-[#FFF5F7]">
-<header class="bg-white shadow sticky top-0 z-50">
-<div class="max-w-6xl mx-auto p-3 flex justify-between items-center">
-<div class="flex items-center gap-2"><span class="border-2 border-pink-700 px-3 py-1 rounded-full font-bold text-xs">CODERX</span><div><h1 class="font-bold leading-none">AYUSH <span class="text-pink-700">CARE</span></h1><p class="text-[8px] text-gray-500">SMART CASE TAKING</p></div></div>
-<button id="authBtn" onclick="openLogin()" class="bg-[#8B1E3F] text-white px-5 py-2 rounded-full text-xs">Login</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AYUSH Care | SIH26047</title>
+<style>
+:root{--green:#176b52;--green2:#258565;--bg:#f2f6f4;--ink:#20332c;--line:#dce7e1;--white:#fff;--red:#a83232;--amber:#fff3d4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Arial,sans-serif}
+header{background:var(--green);color:white;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-size:23px;margin:0}h2{color:var(--green);margin:0 0 14px}h3{margin:0 0 10px}
+main{max-width:1250px;margin:auto;padding:18px}.card{background:var(--white);padding:19px;border-radius:14px;margin-bottom:16px;box-shadow:0 3px 16px #173c2c0b}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:14px}
+label{display:block;font-weight:650;font-size:13px;margin:12px 0 6px}
+input,select,textarea,button{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;width:100%;background:white;color:var(--ink)}
+textarea{min-height:78px;resize:vertical}button{background:var(--green);color:white;border:0;font-weight:650;cursor:pointer}
+button:hover{filter:brightness(.94)}button.alt{background:#e6f0eb;color:var(--green)}button.danger{background:var(--red)}button.tiny{padding:7px 9px;width:auto;font-size:12px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}nav button{width:auto}
+.hidden{display:none!important}.stat{font-size:30px;font-weight:750;color:var(--green)}
+.notice{padding:12px;background:var(--amber);border-radius:9px;font-size:13px;margin-bottom:15px}
+.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:570px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#eff5f1}
+.small{font-size:12px;color:#63766c}.progress{height:8px;background:#e1e9e4;border-radius:8px;overflow:hidden}.progress div{height:100%;background:#2b9a70;width:0}
+.option{display:block;padding:11px;background:#f6f9f7;border:1px solid var(--line);border-radius:8px;margin:8px 0;cursor:pointer}.option input{width:auto;margin-right:8px}
+.actions{display:flex;gap:6px;flex-wrap:wrap}.actions button{width:auto}.bar{height:13px;background:#e7eee9;border-radius:8px;overflow:hidden}.bar span{display:block;height:100%;background:#31936d}
+.toast{position:fixed;bottom:18px;right:18px;background:#183f31;color:white;padding:12px 18px;border-radius:10px;box-shadow:0 5px 20px #0002;z-index:5}
+footer{text-align:center;padding:22px;color:#718078}
+@media(max-width:600px){main{padding:10px}.card{padding:14px}h1{font-size:19px}header{padding:15px}}
+@media print{header,nav,.no-print,footer,.notice{display:none!important}body{background:white}.card{box-shadow:none;border:1px solid #ddd}main{max-width:none;padding:0}}
+</style>
+</head>
+<body>
+<header><div><h1>🌿 AYUSH Care</h1><small>Patient Case Taking System · SIH26047</small></div><div id="who">Demo mode</div></header>
+<main>
+<div class="notice">DEMO / EDUCATIONAL PROTOTYPE. Do not enter real patient data, Aadhaar numbers, or confidential medical information. Data stays in this browser and is not protected like a clinical system. Production use needs secure server-side authentication, authorization, encryption, backups, consent, and compliance review.</div>
+<section class="card" id="login">
+<h2>Welcome to AYUSH Care</h2><p>Choose a demo role. This is a role-based interface demonstration, not secure authentication.</p>
+<div class="grid"><div><label>Role</label><select id="role"><option>Admin</option><option>Doctor</option><option>Receptionist</option><option>Patient</option></select></div><div><label>Display name</label><input id="loginName" placeholder="Enter demo name"></div></div>
+<br><button onclick="login()">Continue to Dashboard</button>
+</section>
+<section id="workspace" class="hidden">
+<nav id="nav" class="no-print"></nav>
+<section id="dashboard" class="page">
+<div class="grid">
+<div class="card"><h3>Patients</h3><div class="stat" id="np">0</div></div>
+<div class="card"><h3>Doctors</h3><div class="stat" id="nd">0</div></div>
+<div class="card"><h3>Appointments</h3><div class="stat" id="na">0</div></div>
+<div class="card"><h3>Case Sheets</h3><div class="stat" id="nc">0</div></div>
 </div>
-<div class="bg-[#8B1E3F] text-white flex justify-around text-xs font-semibold">
-<button onclick="showPage('home')" class="py-3 border-b-2 border-white">Home</button>
-<button onclick="showPage('quiz')" class="py-3">Prakriti Quiz</button>
-<button onclick="showPage('doctors')" class="py-3">Doctors</button>
-<button id="navCases" onclick="showPage('cases')" class="py-3">My Cases</button>
-</div>
-</header>
+<div class="card"><h2>Dashboard</h2><p>Use the menu to access your role's modules. Add sample records to explore the workflow.</p></div>
+</section>
 
-<div class="max-w-6xl mx-auto p-4">
-<div id="page-home"><div class="bg-white rounded-[20px] p-5 mt-3 border-l-8 border-[#8B1E3F] shadow"><h2 class="font-bold text-[#8B1E3F] text-sm">AYUSH CARE - Patient + Doctor Portal</h2><p class="text-xs text-gray-600 mt-2">Login as <b>Patient</b> for Quiz & Appointments, <b>Doctor</b> for Patient Cases.</p><div class="mt-3 flex gap-2"><button onclick="showPage('quiz')" class="bg-[#8B1E3F] text-white px-4 py-2 rounded-full text-xs">Patient: Start Quiz</button><button onclick="openLogin()" class="bg-pink-100 text-[#8B1E3F] px-4 py-2 rounded-full text-xs">Login First</button></div></div>
-<div id="roleInfo" class="hidden mt-4 bg-white p-4 rounded-2xl shadow"></div></div>
+<section id="doctors" class="page hidden">
+<div class="card"><h2>Doctor Management</h2><form id="doctorForm">
+<input type="hidden" name="id"><div class="grid">
+<div><label>Doctor name</label><input name="name" required></div>
+<div><label>Specialization</label><select name="specialization"><option>Physician</option><option>Dentist</option><option>Ayurveda</option><option>General Medicine</option><option>Cardiology</option><option>Other</option></select></div>
+<div><label>Phone</label><input name="phone"></div><div><label>Fees (₹)</label><input name="fees" type="number" min="0"></div><div><label>Timing</label><input name="timing" placeholder="10 AM - 2 PM"></div>
+</div><br><button id="doctorSubmit">Add Doctor</button> <button type="button" class="alt" onclick="resetForm('doctorForm','doctorSubmit','Add Doctor')">Clear</button></form></div>
+<div class="card"><h2>Doctor List</h2><div id="doctorList" class="tablewrap"></div></div>
+</section>
 
-<div id="page-quiz" class="hidden"><div class="bg-white rounded-2xl p-5 shadow mt-3"><div class="flex justify-between text-xs"><span id="qCount">Q 1/20</span><span id="qPer" class="font-bold text-[#8B1E3F]">5%</span></div><div class="w-full bg-gray-200 h-2 rounded mt-2"><div id="qBar" class="bg-[#8B1E3F] h-2 rounded" style="width:5%"></div></div><h2 id="qTitle" class="font-bold mt-4 text-sm"></h2><div id="qOptions" class="mt-3 grid gap-2"></div></div></div>
+<section id="staff" class="page hidden">
+<div class="card"><h2>Receptionist / Staff Accounts</h2><form id="staffForm">
+<input type="hidden" name="id"><div class="grid"><div><label>Name</label><input name="name" required></div><div><label>Email (demo)</label><input name="email" type="email"></div><div><label>Role</label><select name="role"><option>Receptionist</option><option>Staff</option></select></div></div><p class="small">This stores a demo staff profile only. It does not create a secure login or password.</p><button id="staffSubmit">Add Staff Profile</button> <button type="button" class="alt" onclick="resetForm('staffForm','staffSubmit','Add Staff Profile')">Clear</button></form></div>
+<div class="card"><h2>Staff List</h2><div id="staffList" class="tablewrap"></div></div>
+</section>
 
-<div id="page-result" class="hidden"><div class="bg-white rounded-2xl p-5 shadow mt-3 text-center"><h2 class="font-bold">Result</h2><h1 id="resDosha" class="text-3xl font-bold text-[#8B1E3F] mt-2"></h1><p id="resText" class="text-xs text-gray-600 mt-2"></p><div class="grid grid-cols-3 gap-2 mt-4"><div class="bg-blue-50 p-2 rounded-xl text-xs">VATA<br><b id="sVata"></b></div><div class="bg-red-50 p-2 rounded-xl text-xs">PITTA<br><b id="sPitta"></b></div><div class="bg-green-50 p-2 rounded-xl text-xs">KAPHA<br><b id="sKapha"></b></div></div><button onclick="showPage('doctors')" class="mt-4 bg-[#8B1E3F] text-white px-6 py-2 rounded-full text-xs">Find Doctor</button></div></div>
+<section id="patients" class="page hidden">
+<div class="card"><h2>Patient Registration</h2><form id="patientForm">
+<input type="hidden" name="id"><div class="grid">
+<div><label>Full name</label><input name="name" required></div><div><label>Age</label><input name="age" type="number" min="0" max="120" required></div>
+<div><label>Gender</label><select name="gender"><option>Prefer not to say</option><option>Female</option><option>Male</option><option>Other</option></select></div>
+<div><label>Mobile</label><input name="phone" inputmode="tel"></div><div><label>Address</label><input name="address"></div><div><label>Registration date</label><input name="reg_date" type="date" id="regDate"></div>
+</div><p class="small">Aadhaar is intentionally not collected in this prototype.</p><button id="patientSubmit">Register Patient</button> <button type="button" class="alt" onclick="resetForm('patientForm','patientSubmit','Register Patient')">Clear</button>
+</form></div><div class="card"><h2>Patient Records</h2><div id="patientList" class="tablewrap"></div></div>
+</section>
 
-<div id="page-doctors" class="hidden"><div class="grid md:grid-cols-2 gap-3 mt-3" id="docList"></div></div>
+<section id="appointments" class="page hidden">
+<div class="card"><h2>Book Appointment</h2><form id="appointmentForm">
+<label>Patient</label><select name="patient" id="apPatient" required></select><label>Doctor</label><select name="doctor" id="apDoctor" required></select>
+<div class="grid"><div><label>Date</label><input name="date" type="date" required></div><div><label>Time</label><input name="time" type="time" required></div></div>
+<label>Reason for visit</label><input name="reason"><br><br><button>Book Appointment & Generate Token</button></form></div>
+<div class="card"><h2>Appointments</h2><div id="appointmentList" class="tablewrap"></div></div>
+</section>
 
-<div id="page-cases" class="hidden"><div class="bg-white rounded-2xl p-5 shadow mt-3"><h3 id="casesTitle" class="font-bold text-sm"></h3><div id="caseList" class="mt-3"></div></div></div>
-</div>
+<section id="cases" class="page hidden">
+<div class="card"><h2>Doctor Case Taking</h2><form id="caseForm">
+<input type="hidden" name="id"><label>Patient</label><select name="patient" id="casePatient" required></select><label>Doctor</label><select name="doctor" id="caseDoctor" required></select>
+<label>Chief complaints</label><div class="grid"><textarea name="complaints" placeholder="e.g. Fever for 3 days" required></textarea><button type="button" class="alt" onclick="voiceTo('complaints')">🎙 Voice input</button></div>
+<label>Medical / family history</label><textarea name="history" placeholder="Relevant past and family history"></textarea>
+<h3>Vitals</h3><div class="grid"><div><label>BP</label><input name="bp" placeholder="120/80 mmHg"></div><div><label>Pulse (bpm)</label><input name="pulse" type="number"></div><div><label>Weight (kg)</label><input name="weight" type="number" step="0.1"></div><div><label>Temperature (°C)</label><input name="temperature" type="number" step="0.1"></div><div><label>SpO2 (%)</label><input name="spo2" type="number"></div></div>
+<label>Examination</label><textarea name="examination"></textarea><label>Diagnosis / clinical impression</label><textarea name="diagnosis"></textarea><label>Prescription / plan</label><div class="grid"><textarea name="prescription" placeholder="Clinician-entered plan"></textarea><button type="button" class="alt" onclick="voiceTo('prescription')">🎙 Voice input</button></div>
+<label>Follow-up date</label><input name="followup" type="date"><br><br><button id="caseSubmit">Save Case Sheet</button> <button type="button" class="alt" onclick="resetForm('caseForm','caseSubmit','Save Case Sheet')">Clear</button>
+</form></div><div class="card"><h2>Case History</h2><div id="caseList" class="tablewrap"></div></div>
+</section>
 
-<div id="loginModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[100]"><div class="bg-white rounded-2xl p-6 w-full max-w-sm"><h3 class="font-bold">Login</h3><input id="uName" placeholder="Name" class="w-full border p-3 rounded-xl mt-3 text-sm"><select id="uRole" class="w-full border p-3 rounded-xl mt-3 text-sm"><option value="Patient">Patient</option><option value="Doctor">Doctor</option></select><button onclick="doLogin()" class="w-full bg-[#8B1E3F] text-white p-3 rounded-xl mt-3 text-sm">Continue</button><button onclick="closeLogin()" class="w-full mt-2 text-xs">Cancel</button></div></div>
+<section id="quiz" class="page hidden">
+<div class="card"><h2>🌿 Prakriti Quiz</h2><p>Choose the answer that most closely reflects your usual, long-term traits.</p><div class="notice">Educational self-reflection only. This sample questionnaire is not clinically validated and cannot diagnose disease or prescribe treatment.</div>
+<div class="progress"><div id="quizProgress"></div></div><p id="quizCount" class="small">0 / 12 answered</p><form id="quizForm"><div id="quizQuestions"></div><button>Calculate Demo Summary</button></form><div id="quizResult" class="hidden card"></div></div>
+</section>
+
+<section id="reports" class="page hidden">
+<div class="card"><h2>Reports & Analytics</h2><p>Counts reflect records stored in this browser.</p><div id="reportSummary"></div><h3>Cases by diagnosis</h3><div id="diagnosisChart"></div><h3>Appointments by doctor</h3><div id="doctorChart"></div><br><button class="alt" onclick="exportCSV()">Export records (CSV)</button></div>
+</section>
+
+<section id="settings" class="page hidden">
+<div class="card"><h2>Master Data</h2><label>Medicines (one per line)</label><textarea id="medicines"></textarea><label>Lab tests (one per line)</label><textarea id="labs"></textarea><label>Symptoms (one per line)</label><textarea id="symptoms"></textarea><br><br><button onclick="saveMaster()">Save Master Lists</button><hr><h2>Backup & Restore</h2><button onclick="backup()">Download JSON backup</button><label>Restore backup JSON</label><input id="restoreFile" type="file" accept=".json,application/json"><br><br><button class="alt" onclick="restoreBackup()">Restore selected backup</button><p class="small">Backup is unencrypted and intended only for synthetic demo data.</p><button class="danger" onclick="clearData()">Clear all demo data</button></div>
+</section>
+
+<section id="receipt" class="page hidden">
+<div class="card"><h2>Fees Receipt</h2><label>Appointment</label><select id="receiptAppt"></select><label>Amount paid (₹)</label><input id="receiptAmount" type="number" min="0"><label>Payment note</label><input id="receiptNote" placeholder="Demo payment reference"><br><br><button onclick="makeReceipt()">Generate / Print Receipt</button><div id="receiptOutput"></div></div>
+</section>
+
+<section id="myrecords" class="page hidden"><div class="card"><h2>My Demo Records</h2><p>Choose your registered demo patient profile.</p><label>Patient profile</label><select id="myPatient" onchange="renderMyRecords()"></select><div id="myRecordsOutput"></div></div></section>
+
+<div class="card no-print"><button class="alt" onclick="logout()">Log out</button></div>
+</section>
+</main><footer>AYUSH Care · SIH26047 · Frontend prototype</footer><div id="toast" class="toast hidden"></div>
 
 <script>
-const Qs=[["Body frame?","Thin, lean","Medium","Large"],["Skin?","Dry, rough","Warm, oily","Thick, oily"],["Appetite?","Irregular","Strong","Steady"],["Sleep?","Less, light","Moderate","Deep"],["Mood?","Anxious","Angry","Calm"],["Walk?","Fast","Medium","Slow"],["Weather like?","Warm","Cool","Warm dry"],["Energy?","Burst","Moderate","Steady"],["Mind?","Restless","Focused","Calm"],["Memory?","Short","Sharp","Long"],["Speech?","Fast","Sharp","Slow"],["Decision?","Quick change","Quick firm","Slow"],["Sweat?","Less","More","Moderate"],["Thirst?","Less","More","Moderate"],["Digestion?","Gas","Acidity","Slow"],["Hair?","Dry","Fine","Thick"],["Friends?","Many short","Selective","Few long"],["Money?","Spends fast","Luxury","Saves"],["Stress?","Fear","Anger","Calm"],["Illness?","Pain","Inflammation","Congestion"]];
-let cur=0,scores={Vata:0,Pitta:0,Kapha:0};
-let user=JSON.parse(localStorage.getItem('ayush_user')||'null');
-let doctors=[{name:"Dr. Anjali Sharma",deg:"BAMS, MD",spec:"Panchakarma",fee:"₹500"},{name:"Dr. Rajesh Kumar",deg:"BAMS",spec:"Kayachikitsa",fee:"₹400"},{name:"Dr. Priya Verma",deg:"MD",spec:"Stree Roga",fee:"₹600"},{name:"Dr. Amit Singh",deg:"BAMS MS",spec:"Shalya",fee:"₹550"},{name:"Dr. Sunita Patel",deg:"BAMS",spec:"Bal Roga",fee:"₹450"},{name:"Dr. Vikram Rao",deg:"MD PhD",spec:"Dravyaguna",fee:"₹700"}];
-
-function updateAuth(){
- if(!user){document.getElementById('authBtn').innerText='Login'; document.getElementById('navCases').innerText='My Cases'; return;}
- document.getElementById('authBtn').innerText=user.name+' ('+user.role+') - Logout';
- document.getElementById('authBtn').onclick=()=>{localStorage.removeItem('ayush_user');location.reload()};
- document.getElementById('navCases').innerText=user.role=='Doctor'?'All Patients':'My Cases';
- let info=document.getElementById('roleInfo'); info.classList.remove('hidden');
- if(user.role=='Patient'){
-  let cases=JSON.parse(localStorage.getItem('ayush_cases')||'[]').filter(c=>c.name==user.name);
-  let last=cases[0];
-  info.innerHTML=`<h3 class="font-bold text-sm">Patient Dashboard - ${user.name}</h3><div class="grid grid-cols-2 gap-2 mt-3"><div class="bg-pink-50 p-3 rounded-xl text-xs">Prakriti<br><b>${last?last.dosha:'Not tested'}</b></div><div class="bg-blue-50 p-3 rounded-xl text-xs">My Cases<br><b>${cases.length}</b></div></div>`;
- } else {
-  let cases=JSON.parse(localStorage.getItem('ayush_cases')||'[]');
-  info.innerHTML=`<h3 class="font-bold text-sm">Doctor Dashboard - ${user.name}</h3><div class="grid grid-cols-2 gap-2 mt-3"><div class="bg-green-50 p-3 rounded-xl text-xs">Total Patients<br><b>${cases.length}</b></div><div class="bg-yellow-50 p-3 rounded-xl text-xs">Today<br><b>${cases.filter(c=>c.date.includes(new Date().toLocaleDateString())).length}</b></div></div><p class="text-[10px] text-gray-500 mt-2">All patient prakriti results will appear in Cases tab.</p>`;
- }
+const $=id=>document.getElementById(id);
+const today=new Date().toISOString().slice(0,10);
+const defaultDB={doctors:[],patients:[],staff:[],appointments:[],cases:[],receipts:[],quizResults:[],master:{medicines:[],labs:[],symptoms:[]}};
+let db;
+try{db=Object.assign({},defaultDB,JSON.parse(localStorage.getItem("ayushCareDemo")||"{}"));db.master=Object.assign({},defaultDB.master,db.master||{});}catch(e){db=JSON.parse(JSON.stringify(defaultDB));}
+let currentRole="",currentName="";
+const navMap={
+ Admin:["dashboard","doctors","staff","patients","appointments","cases","quiz","reports","settings","receipt"],
+ Doctor:["dashboard","appointments","patients","cases","quiz"],
+ Receptionist:["dashboard","patients","appointments","receipt"],
+ Patient:["dashboard","myrecords","quiz"]
+};
+const titles={dashboard:"Dashboard",doctors:"Doctors",staff:"Staff Accounts",patients:"Patients",appointments:"Appointments",cases:"Case Taking",quiz:"Prakriti Quiz",reports:"Reports",settings:"Master Data & Backup",receipt:"Fees Receipt",myrecords:"My Records"};
+function persist(){localStorage.setItem("ayushCareDemo",JSON.stringify(db));render();}
+function toast(msg){$("toast").textContent=msg;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),2600);}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function val(form,name){return form.elements[name]?.value?.trim()||"";}
+function formObj(form){return Object.fromEntries(new FormData(form).entries());}
+function login(){
+ currentRole=$("role").value;currentName=$("loginName").value.trim()||currentRole;
+ $("login").classList.add("hidden");$("workspace").classList.remove("hidden");$("who").textContent=currentRole+" · "+currentName;
+ $("nav").innerHTML="";
+ navMap[currentRole].forEach(p=>{let b=document.createElement("button");b.textContent=titles[p];b.onclick=()=>showPage(p);$("nav").appendChild(b);});
+ showPage("dashboard");render();
 }
-function openLogin(){document.getElementById('loginModal').classList.remove('hidden')}
-function closeLogin(){document.getElementById('loginModal').classList.add('hidden')}
-function doLogin(){let n=document.getElementById('uName').value.trim(); if(!n) return alert("Name likh"); let r=document.getElementById('uRole').value; user={name:n,role:r}; localStorage.setItem('ayush_user',JSON.stringify(user)); closeLogin(); updateAuth(); showPage('home');}
-function showPage(p){document.querySelectorAll('[id^=page-]').forEach(e=>e.classList.add('hidden')); document.getElementById('page-'+p).classList.remove('hidden'); if(p=='quiz') startQuiz(); if(p=='doctors') renderDocs(); if(p=='cases') renderCases();}
-function startQuiz(){if(!user){openLogin();return;} if(user.role=='Doctor') return alert("Doctor cannot give quiz. Login as Patient."); cur=0;scores={Vata:0,Pitta:0,Kapha:0};showQ();}
-function showQ(){let q=Qs[cur];document.getElementById('qCount').innerText=`Q ${cur+1}/20`;document.getElementById('qPer').innerText=Math.round((cur+1)/20*100)+'%';document.getElementById('qBar').style.width=(cur+1)/20*100+'%';document.getElementById('qTitle').innerText=q[0];let box=document.getElementById('qOptions');box.innerHTML='';[{l:q[1],t:'Vata'},{l:q[2],t:'Pitta'},{l:q[3],t:'Kapha'}].forEach(o=>{box.innerHTML+=`<button onclick="ans('${o.t}')" class="text-left p-3 border rounded-xl text-xs hover:bg-pink-50 flex justify-between"><span>${o.l}</span><span class="text-[9px] bg-gray-100 px-2 rounded">${o.t}</span></button>`});}
-function ans(t){scores[t]++;cur++;if(cur<20)showQ();else showResult();}
-function showResult(){document.getElementById('page-quiz').classList.add('hidden');document.getElementById('page-result').classList.remove('hidden');let dom=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);document.getElementById('resDosha').innerText=dom;document.getElementById('resText').innerText=`Vata ${scores.Vata}, Pitta ${scores.Pitta}, Kapha ${scores.Kapha}`;document.getElementById('sVata').innerText=Math.round(scores.Vata/20*100)+'%';document.getElementById('sPitta').innerText=Math.round(scores.Pitta/20*100)+'%';document.getElementById('sKapha').innerText=Math.round(scores.Kapha/20*100)+'%';let cases=JSON.parse(localStorage.getItem('ayush_cases')||'[]');cases.unshift({dosha:dom,scores,date:new Date().toLocaleString(),name:user.name});localStorage.setItem('ayush_cases',JSON.stringify(cases));let appts=JSON.parse(localStorage.getItem('ayush_appts')||'[]');localStorage.setItem('ayush_appts',JSON.stringify(appts));updateAuth();}
-function renderDocs(){let h='';doctors.forEach(d=>{h+=`<div class="bg-white p-4 rounded-2xl shadow"><h4 class="font-bold text-sm">${d.name}</h4><p class="text-[11px] text-gray-500">${d.deg} • ${d.spec} • ${d.fee}</p><button onclick="book('${d.name}')" class="mt-2 w-full bg-[#8B1E3F] text-white py-2 rounded-full text-xs">Book Appointment</button></div>`});document.getElementById('docList').innerHTML=h;}
-function book(n){if(!user)return openLogin();if(user.role=='Doctor')return alert("Doctor cannot book");let appts=JSON.parse(localStorage.getItem('ayush_appts')||'[]');appts.unshift({doctor:n,patient:user.name,date:new Date().toLocaleString()});localStorage.setItem('ayush_appts',JSON.stringify(appts));alert("Booked with "+n);}
-function renderCases(){
- let cases=JSON.parse(localStorage.getItem('ayush_cases')||'[]');
- let appts=JSON.parse(localStorage.getItem('ayush_appts')||'[]');
- if(user.role=='Doctor'){
-  document.getElementById('casesTitle').innerText='All Patients - Doctor View ('+cases.length+')';
-  if(!cases.length) document.getElementById('caseList').innerHTML='<p class="text-xs text-gray-500">No patients yet</p>';
-  else document.getElementById('caseList').innerHTML=cases.map(c=>`<div class="border p-3 rounded-xl mb-2 text-xs"><b>${c.name}</b> - ${c.dosha} <span class="float-right">${c.date}</span><br>V${c.scores.Vata} P${c.scores.Pitta} K${c.scores.Kapha}<br><button onclick="alert('Prescription for ${c.name}: Triphala, Ashwagandha')" class="mt-1 bg-green-100 px-2 py-1 rounded text-[10px]">Give Prescription</button></div>`).join('')+`<h4 class="font-bold mt-4 text-xs">Appointments (${appts.length})</h4>`+appts.map(a=>`<div class="text-xs border-b py-1">${a.patient} -> ${a.doctor} - ${a.date}</div>`).join('');
- } else {
-  document.getElementById('casesTitle').innerText='My Cases - Patient View';
-  let my=cases.filter(c=>c.name==user.name); let myAp=appts.filter(a=>a.patient==user.name);
-  if(!my.length) document.getElementById('caseList').innerHTML='<p class="text-xs text-gray-500">No cases. Do quiz.</p>';
-  else document.getElementById('caseList').innerHTML=my.map(c=>`<div class="border p-3 rounded-xl mb-2 text-xs"><b>${c.dosha}</b> - ${c.date}<br>V${c.scores.Vata} P${c.scores.Pitta} K${c.scores.Kapha}</div>`).join('')+`<h4 class="font-bold mt-3 text-xs">My Appointments</h4>`+myAp.map(a=>`<div class="text-xs border-b py-1">${a.doctor} - ${a.date}</div>`).join('');
- }
+function logout(){$("workspace").classList.add("hidden");$("login").classList.remove("hidden");}
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));$(id).classList.remove("hidden");}
+function resetForm(id,buttonId,label){$(id).reset();if($(id).elements.id)$(id).elements.id.value="";$(buttonId).textContent=label;}
+function requireRole(...roles){if(!roles.includes(currentRole)){toast("This action is not available for your demo role.");return false;}return true;}
+function person(id){return db.patients.find(x=>x.id===id)?.name||"Unknown patient";}
+function doctor(id){return db.doctors.find(x=>x.id===id)?.name||"Unknown doctor";}
+function options(items,placeholder,display){return `<option value="">${placeholder}</option>`+items.map(x=>`<option value="${esc(x.id)}">${esc(display(x))}</option>`).join("");}
+function table(items,heads,cols,actions){if(!items.length)return "<p>No records yet.</p>";return `<table><thead><tr>${heads.map(x=>`<th>${esc(x)}</th>`).join("")}${actions?"<th>Actions</th>":""}</tr></thead><tbody>${items.map(x=>`<tr>${cols.map(fn=>`<td>${esc(fn(x))}</td>`).join("")}${actions?`<td><div class="actions">${actions(x)}</div></td>`:""}</tr>`).join("")}</tbody></table>`;}
+function canDelete(){return currentRole==="Admin";}
+function remove(type,id){if(!canDelete())return toast("Only Admin can delete in this demo.");if(!confirm("Delete this demo record?"))return;db[type]=db[type].filter(x=>x.id!==id);persist();toast("Record deleted.");}
+function editDoctor(id){if(!requireRole("Admin"))return;let x=db.doctors.find(d=>d.id===id);if(!x)return;let f=$("doctorForm");Object.keys(x).forEach(k=>{if(f.elements[k])f.elements[k].value=x[k]});$("doctorSubmit").textContent="Update Doctor";showPage("doctors");}
+function editPatient(id){if(!requireRole("Admin","Receptionist"))return;let x=db.patients.find(p=>p.id===id);if(!x)return;let f=$("patientForm");Object.keys(x).forEach(k=>{if(f.elements[k])f.elements[k].value=x[k]});$("patientSubmit").textContent="Update Patient";showPage("patients");}
+function editStaff(id){let x=db.staff.find(p=>p.id===id);if(!x)return;let f=$("staffForm");Object.keys(x).forEach(k=>{if(f.elements[k])f.elements[k].value=x[k]});$("staffSubmit").textContent="Update Staff Profile";}
+function render(){
+ $("np").textContent=db.patients.length;$("nd").textContent=db.doctors.length;$("na").textContent=db.appointments.length;$("nc").textContent=db.cases.length;
+ $("doctorList").innerHTML=table(db.doctors,["Name","Specialization","Phone","Fees","Timing"],[x=>x.name,x=>x.specialization,x=>x.phone,x=>"₹"+(x.fees||0),x=>x.timing],x=>`${currentRole==="Admin"?`<button class="tiny alt" onclick="editDoctor('${x.id}')">Edit</button><button class="tiny danger" onclick="remove('doctors','${x.id}')">Delete</button>`:""}`);
+ $("patientList").innerHTML=table(db.patients,["Name","Age","Gender","Mobile","Address"],[x=>x.name,x=>x.age,x=>x.gender,x=>x.phone,x=>x.address],x=>`${["Admin","Receptionist"].includes(currentRole)?`<button class="tiny alt" onclick="editPatient('${x.id}')">Edit</button>`:""}${currentRole==="Admin"?`<button class="tiny danger" onclick="remove('patients','${x.id}')">Delete</button>`:""}`);
+ $("staffList").innerHTML=table(db.staff,["Name","Email","Role"],[x=>x.name,x=>x.email,x=>x.role],x=>`<button class="tiny alt" onclick="editStaff('${x.id}')">Edit</button><button class="tiny danger" onclick="remove('staff','${x.id}')">Delete</button>`);
+ $("apPatient").innerHTML=options(db.patients,"Choose patient",x=>x.name);$("casePatient").innerHTML=options(db.patients,"Choose patient",x=>x.name);
+ $("apDoctor").innerHTML=options(db.doctors,"Choose doctor",x=>x.name);$("caseDoctor").innerHTML=options(db.doctors,"Choose doctor",x=>x.name);
+ $("appointmentList").innerHTML=table(db.appointments,["Token","Patient","Doctor","Date","Time","Reason"],[x=>x.token,x=>person(x.patient),x=>doctor(x.doctor),x=>x.date,x=>x.time,x=>x.reason],x=>`${currentRole==="Admin"?`<button class="tiny danger" onclick="remove('appointments','${x.id}')">Delete</button>`:""}`);
+ $("caseList").innerHTML=table(db.cases,["Date","Patient","Doctor","Complaints","Diagnosis","Follow-up"],[x=>x.date, x=>person(x.patient),x=>doctor(x.doctor),x=>x.complaints,x=>x.diagnosis,x=>x.followup||"—"],x=>`<button class="tiny alt" onclick="printCase('${x.id}')">Print / PDF</button>${currentRole==="Admin"?`<button class="tiny danger" onclick="remove('cases','${x.id}')">Delete</button>`:""}`);
+ $("receiptAppt").innerHTML=options(db.appointments,"Choose appointment",x=>`${x.token} · ${person(x.patient)} · ${x.date}`);
+ $("myPatient").innerHTML=options(db.patients,"Choose your demo profile",x=>x.name);
+ $("medicines").value=db.master.medicines.join("\n");$("labs").value=db.master.labs.join("\n");$("symptoms").value=db.master.symptoms.join("\n");
+ renderReports();renderMyRecords();
 }
-updateAuth();
-</script></body></html>
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+$("doctorForm").addEventListener("submit",e=>{e.preventDefault();if(!requireRole("Admin"))return;let f=e.target,o=formObj(f),old=db.doctors.find(x=>x.id===o.id);o.id=o.id||id();o.fees=Number(o.fees)||0;if(old)Object.assign(old,o);else db.doctors.push(o);persist();resetForm("doctorForm","doctorSubmit","Add Doctor");toast("Doctor saved.");});
+$("staffForm").addEventListener("submit",e=>{e.preventDefault();if(!requireRole("Admin"))return;let o=formObj(e.target),old=db.staff.find(x=>x.id===o.id);o.id=o.id||id();if(o
